@@ -15,6 +15,10 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
      */
     public function serverPaginationFilteringFor(Request $request): LengthAwarePaginator
     {
-        return $this->model->orderBy('created_at', 'desc')->paginate(1);
+        $search = $request->search;
+        return $this->model->when($search, function ($query) use ($search) {
+            return $query->where('name', 'like', '%' . $search . '%')
+            ->orWhere('email', 'like', '%' . $search . '%');
+        })->orderBy('id', 'desc')->paginate($request->size ?? 10);
     }
 }

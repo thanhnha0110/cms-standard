@@ -11,7 +11,10 @@
                 <h4 class="m-menu__section-text">CRUD</h4>
                 <i class="m-menu__section-icon flaticon-more-v2"></i>
             </li>
-            <x-menu-item title="Settings" iconClass="flaticon-settings" :activeClass="'m-menu__item--active' ?? ''">
+            <x-menu-item 
+                title="{{ trans('general.menus.settings') }}" 
+                iconClass="flaticon-settings"
+            >
                 <x-sub-menu-item link="components/base/state.html" text="General"/>
                 <x-sub-menu-item link="components/base/typography.html" text="Email"/>
                 <x-sub-menu-item link="components/base/stack.html" text="Language"/>
@@ -21,9 +24,20 @@
                 <x-sub-menu-item link="components/base/stack.html" text="API Settings"/>
             </x-menu-item>
 
-            <x-menu-item title="Platform Adminstration" iconClass="flaticon-interface-7">
+            <x-menu-item 
+                title="{{ trans('general.menus.platform_administration') }}" 
+                iconClass="flaticon-interface-7" 
+                :activeClass="
+                    Route::is('users.*') ||
+                    Route::is('roles.*')
+                    ? 'm-menu__item--expanded m-menu__item--open' : ''"
+            >
                 <x-sub-menu-item link="components/base/state.html" text="Roles and Permissions"/>
-                <x-sub-menu-item link="{{ route('users.index') }}" text="Users"/>
+                <x-sub-menu-item 
+                    link="{{ route('users.index') }}" 
+                    text="{{ trans('general.users.title') }}" 
+                    :activeClass="Route::is('users.*') ? 'm-menu__item--active' : ''"
+                />
                 <x-sub-menu-item link="components/base/stack.html" text="Activities Logs"/>
                 <x-sub-menu-item link="components/base/stack.html" text="Backups"/>
             </x-menu-item>

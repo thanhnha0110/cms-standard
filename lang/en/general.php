@@ -13,7 +13,12 @@ return [
     |
     */
 
-    'users' => [
-        'title' => 'Users',
+    'menus' => [
+        'dashboard' => 'Dashboard',
+        'settings' => 'Settings',
+        'platform_administration' => 'Platform Administrator',
     ],
+    'users' => [
+        'title' => 'Users'
+    ]
 ];

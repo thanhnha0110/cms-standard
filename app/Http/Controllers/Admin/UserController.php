@@ -29,8 +29,16 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $title = trans('general.users.title');
+        $page = $request->page;
+        $size = $request->size;
+        $search = $request->search;
         $items = $this->userRepository->serverPaginationFilteringFor($request);
-        // dd($items->links());
-        return view('users.index', ['title' =>$title, 'items' => $items]);
+        return view('users.index', compact(
+            'title',
+            'page',
+            'size',
+            'search',
+            'items',
+        ));
     }
 }

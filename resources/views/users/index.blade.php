@@ -1,86 +1,68 @@
 @extends('layouts.master')
 
-@section('title', 'Trang Chính')
-
 @section('content')
-    <div class="">
-        <div class="m-alert m-alert--icon m-alert--air m-alert--square alert alert-dismissible m--margin-bottom-30" role="alert">
-            <div class="m-alert__icon">
-                <i class="flaticon-exclamation m--font-brand"></i>
-            </div>
-            <div class="m-alert__text">
-                This example shows a vertically scrolling DataTable that makes use of the CSS3 vh unit in order to dynamically resize the viewport based on the browser window height.
-            </div>
-        </div>
+
+    <x-subheader 
+        :title="$title" 
+        :breadcrumbs="[
+            ['url' => 'javascript:void;', 'text' => trans('general.menus.platform_administration')],
+            ['url' => request()->url(), 'text' => $title],
+        ]"  
+    />
+
+    <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
-            <div class="m-portlet__head">
-                <div class="m-portlet__head-caption">
-                    <div class="m-portlet__head-title">
-                        <h3 class="m-portlet__head-text">
-                            Scrollable DataTable
-                        </h3>
-                    </div>
-                </div>
-                <div class="m-portlet__head-tools">
-                    <ul class="m-portlet__nav">
-                        <li class="m-portlet__nav-item">
-                            <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
-                                <span>
-                                    <i class="la la-cart-plus"></i>
-                                    <span>New Order</span>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+            <x-table-head />
+
             <div class="m-portlet__body">
+                <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+                    <!--begin: Size and Search -->
+                    <x-table-header />
 
-                <!--begin: Datatable -->
-                <table class="table table-striped- table-bordered table-hover table-checkable" >
-                    <thead>
-                        <tr>
-                            <th>Record ID</th>
-                            <th>Order ID</th>
-                            <th>Country</th>
-                            <th>Ship City</th>
-                            <th>Ship Address</th>
-                            <th>Company Agent</th>
-                            <th>Company Name</th>
-                            <th>Ship Date</th>
-                            <th>Status</th>
-                            <th>Type</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($items as $item)
-                        <tr>
-                            <td>{{ $item->id }}</td>
-                            <td>61715-075</td>
-                            <td>China</td>
-                            <td>Tieba</td>
-                            <td>746 Pine View Junction</td>
-                            <td>Nixie Sailor</td>
-                            <td>Gleichner, Ziemann and Gutkowski</td>
-                            <td>2/12/2018</td>
-                            <td>3</td>
-                            <td>2</td>
-                            <td nowrap></td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                    <!--begin: Datatable -->
+                    <table class="table table-striped- table-bordered table-hover table-checkable" >
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Order ID</th>
+                                <th>Country</th>
+                                <th>Ship City</th>
+                                <th>Ship Address</th>
+                                <th>Company Agent</th>
+                                <th>Company Name</th>
+                                <th>Ship Date</th>
+                                <th>Status</th>
+                                <th>Type</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($items as $item)
+                            <tr>
+                                <td>{{ $item->id }}</td>
+                                <td>qqq</td>
+                                <td>China</td>
+                                <td>Tieba</td>
+                                <td>746 Pine View Junction</td>
+                                <td>Nixie Sailor</td>
+                                <td>Gleichner, Ziemann and Gutkowski</td>
+                                <td>2/12/2018</td>
+                                <td>3</td>
+                                <td>2</td>
+                                <td nowrap></td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                <div class="pagination-container">
-                    {{ $items->links('') }}
+                    <!--begin: Pagination -->
+                    {{ $items->appends(['search' => isset($search) ? $search : '', 'size' => isset($size) ? $size : 10])->links() }}
                 </div>
-                
-                        
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->
     </div>
+
 @endsection
 
 
