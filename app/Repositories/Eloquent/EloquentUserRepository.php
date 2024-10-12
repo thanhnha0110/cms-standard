@@ -17,7 +17,8 @@ class EloquentUserRepository extends EloquentBaseRepository implements UserRepos
     {
         $search = $request->search;
         return $this->model->when($search, function ($query) use ($search) {
-            return $query->where('name', 'like', '%' . $search . '%')
+            return $query->where('first_name', 'like', '%' . $search . '%')
+            ->orWhere('last_name', 'like', '%' . $search . '%')
             ->orWhere('email', 'like', '%' . $search . '%');
         })->orderBy('id', 'desc')->paginate($request->size ?? 10);
     }

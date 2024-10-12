@@ -24,8 +24,8 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Company Agent</th>
-                                <th>Company Name</th>
+                                <th>Full Name</th>
+                                <th>Email</th>
                                 <th>Created At</th>
                                 <th>Status</th>
                                 <th>Type</th>
@@ -36,14 +36,14 @@
                             @foreach ($items as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>Nixie Sailor</td>
-                                <td>Gleichner, Ziemann and Gutkowski</td>
+                                <td>{{ $item->getFullName() }}</td>
+                                <td>{{ $item->email }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td>
-                                    <x-status-badge status="active" />
+                                    <x-status-badge status="{{ $item->status }}" />
                                 </td>
                                 <td>
-                                    <x-user-role-badge role="1" />
+                                    <x-user-role-badge role="{{ $item->role_id }}" />
                                 </td>
                                 <td nowrap>
                                     <x-action-button icon="la la-edit" title="{{ __('Edit') }}" prefix="users" id="{{ $item->id }}" method="GET" />

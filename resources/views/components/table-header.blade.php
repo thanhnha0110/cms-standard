@@ -3,7 +3,6 @@
         <div class="dataTables_length" id="m_table_1_length">
             <label>Show 
                 <select name="size" class="custom-select custom-select-sm form-control form-control-sm" onchange="updateDataLength(this.value)">
-                    <option value="1" {{ request('size') == 1 ? 'selected' : '' }}>1</option>
                     <option value="10" {{ request('size') == 10 ? 'selected' : '' }}>10</option>
                     <option value="25" {{ request('size') == 25 ? 'selected' : '' }}>25</option>
                     <option value="50" {{ request('size') == 50 ? 'selected' : '' }}>50</option>
