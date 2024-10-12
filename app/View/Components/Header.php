@@ -14,6 +14,6 @@ class Header extends Component
 
     public function render()
     {
-        return view('includes.header', ['title' => $this->title]);
+        return view('layouts.header', ['title' => $this->title]);
     }
 }

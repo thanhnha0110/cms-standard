@@ -14,6 +14,6 @@ class Footer extends Component
 
     public function render()
     {
-        return view('includes.footer', ['title' => $this->title]);
+        return view('layouts.footer', ['title' => $this->title]);
     }
 }

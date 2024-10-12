@@ -7,6 +7,6 @@ class Scripts extends Component
 {
     public function render()
     {
-        return view('includes.scripts');
+        return view('layouts.scripts');
     }
 }

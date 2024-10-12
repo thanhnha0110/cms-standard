@@ -14,6 +14,6 @@ class Head extends Component
 
     public function render()
     {
-        return view('includes.head', ['title' => $this->title]);
+        return view('layouts.head', ['title' => $this->title]);
     }
 }

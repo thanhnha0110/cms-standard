@@ -16,3 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('index');
 });
+
+Route::group([
+    'prefix' => 'admin',
+    // 'middleware' => ['web', 'core']
+], function () {
+
+    // Autoload all files in the admin folder
+    foreach (glob(__DIR__ . '/admin/*.php') as $file) {
+        include_once $file;
+    }
+});

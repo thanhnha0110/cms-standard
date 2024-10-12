@@ -7,6 +7,6 @@ class QuickNav extends Component
 {
     public function render()
     {
-        return view('includes.quick-nav');
+        return view('layouts.quick-nav');
     }
 }

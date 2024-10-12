@@ -7,6 +7,6 @@ class ScrollTop extends Component
 {
     public function render()
     {
-        return view('includes.scroll-top');
+        return view('layouts.scroll-top');
     }
 }

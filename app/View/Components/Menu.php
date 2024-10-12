@@ -7,6 +7,6 @@ class Menu extends Component
 {
     public function render()
     {
-        return view('includes.menu');
+        return view('layouts.menu');
     }
 }

@@ -1,4 +1,4 @@
-@extends('includes.master')
+@extends('layouts.master')
 
 @section('title', 'Trang Chính')
 
@@ -111,4 +111,16 @@
     </div>
 
     <!--End::Section-->
+@endsection
+
+@section('scripts')
+    <script src="{{ asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/app/js/dashboard.js') }}" type="text/javascript"></script>
+@endsection
+
+
+@section('css')
+    <!--begin::Page Vendors Styles -->
+    <link href="{{ asset('assets/vendors/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <!--RTL version:<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.rtl.css" rel="stylesheet" type="text/css" />-->
 @endsection

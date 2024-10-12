@@ -7,6 +7,6 @@ class Sidebar extends Component
 {
     public function render()
     {
-        return view('includes.sidebar');
+        return view('layouts.sidebar');
     }
 }
