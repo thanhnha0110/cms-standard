@@ -17,6 +17,12 @@ interface BaseRepository
     public function find($id);
 
     /**
+     * @param  int $id
+     * @return $model
+     */
+    public function findOrFail($id);
+
+    /**
      * @param array $condition
      * @return $model
      */

@@ -41,6 +41,18 @@ abstract class EloquentBaseRepository implements BaseRepository
     /**
      * @inheritdoc
      */
+    public function findOrFail($id)
+    {
+        if (method_exists($this->model, 'translations')) {
+            return $this->model->with('translations')->find($id);
+        }
+
+        return $this->model->findOrFail($id);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function findMany($condition)
     {
         return $this->model->where($condition)->get();

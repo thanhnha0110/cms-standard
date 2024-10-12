@@ -19,10 +19,6 @@
 
 					@yield('content')
 
-
-					
-
-					
 				</div>
 			</div>
 			<!-- end:: Body -->

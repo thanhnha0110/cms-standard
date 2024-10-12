@@ -24,13 +24,9 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Order ID</th>
-                                <th>Country</th>
-                                <th>Ship City</th>
-                                <th>Ship Address</th>
                                 <th>Company Agent</th>
                                 <th>Company Name</th>
-                                <th>Ship Date</th>
+                                <th>Created At</th>
                                 <th>Status</th>
                                 <th>Type</th>
                                 <th>Actions</th>
@@ -40,16 +36,19 @@
                             @foreach ($items as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>qqq</td>
-                                <td>China</td>
-                                <td>Tieba</td>
-                                <td>746 Pine View Junction</td>
                                 <td>Nixie Sailor</td>
                                 <td>Gleichner, Ziemann and Gutkowski</td>
-                                <td>2/12/2018</td>
-                                <td>3</td>
-                                <td>2</td>
-                                <td nowrap></td>
+                                <td>{{ $item->created_at }}</td>
+                                <td>
+                                    <x-status-badge status="active" />
+                                </td>
+                                <td>
+                                    <x-user-role-badge role="1" />
+                                </td>
+                                <td nowrap>
+                                    <x-action-button icon="la la-edit" title="{{ __('Edit') }}" prefix="users" id="{{ $item->id }}" method="GET" />
+                                    <x-action-button icon="la la-trash" title="{{ __('Delete') }}" prefix="users" id="{{ $item->id }}" confirm="true" method="DELETE" />
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

@@ -1,3 +1,9 @@
+
+<!-- begin::Toast -->
+<div class="row" style="justify-content: end; margin: 50px 10px;">
+    <div id="toast" class="col-3"></div>
+</div>
+
 <!-- begin::Footer -->
 <footer class="m-grid__item		m-footer ">
     <div class="m-container m-container--fluid m-container--full-height m-page__container">

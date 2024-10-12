@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repositories\UserRepository;
+use Exception;
 
 class UserController extends Controller
 {
@@ -41,4 +42,19 @@ class UserController extends Controller
             'items',
         ));
     }
+
+    /**
+     * Get and paginate all users
+     */
+    public function destroy($id)
+    {
+        try {
+            $item = $this->userRepository->findOrFail($id);
+            $this->userRepository->destroy($item);
+            return $this->success(trans('notices.delete_success_message'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
+    }
+
 }
