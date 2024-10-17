@@ -3,8 +3,12 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Repositories\Eloquent\EloquentPermissionRepository;
+use App\Repositories\Eloquent\EloquentRoleRepository;
 use App\Repositories\Eloquent\EloquentUserRepository;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Permission\Models\Permission;
+use Spatie\Permission\Models\Role;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -32,6 +36,14 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind('App\Repositories\UserRepository', function () {
             return new EloquentUserRepository(new User());
+        });
+
+        $this->app->bind('App\Repositories\RoleRepository', function () {
+            return new EloquentRoleRepository(new Role());
+        });
+
+        $this->app->bind('App\Repositories\PermissionRepository', function () {
+            return new EloquentPermissionRepository(new Permission());
         });
     }
 }

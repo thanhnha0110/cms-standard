@@ -27,5 +27,11 @@ return [
             'role' => 'Role',
             'status' => 'Status',
         ],
-    ]
+    ],
+    'roles_and_permissions' => [
+        'title' => 'Roles and Permissions',
+        'form' => [
+            'name' => 'Name',
+        ],
+    ],
 ];

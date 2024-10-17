@@ -1,0 +1,22 @@
+<?php
+
+return [
+    'roles' => [
+        'title' => 'Roles and Permissions',
+        'permissions' => [
+            'create' => 'Create',
+            'edit' => 'Edit',
+            'view' => 'View',
+            'delete' => 'Delete'
+        ],
+    ],
+    'users' => [
+        'title' => 'Users',
+        'permissions' => [
+            'create' => 'Create',
+            'edit' => 'Edit',
+            'view' => 'View',
+            'delete' => 'Delete'
+        ],
+    ],
+];

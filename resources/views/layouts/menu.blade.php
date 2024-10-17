@@ -32,7 +32,11 @@
                     Route::is('roles.*')
                     ? 'm-menu__item--expanded m-menu__item--open' : ''"
             >
-                <x-sub-menu-item link="components/base/state.html" text="Roles and Permissions"/>
+                <x-sub-menu-item 
+                    link="{{ route('roles.index') }}" 
+                    text="{{ trans('general.roles_and_permissions.title') }}" 
+                    :activeClass="Route::is('roles.*') ? 'm-menu__item--active' : ''"
+                />
                 <x-sub-menu-item 
                     link="{{ route('users.index') }}" 
                     text="{{ trans('general.users.title') }}" 
