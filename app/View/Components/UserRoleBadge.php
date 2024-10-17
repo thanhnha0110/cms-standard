@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use Illuminate\View\Component;
+use Spatie\Permission\Models\Role;
 
 class UserRoleBadge extends Component
 {
@@ -34,11 +35,8 @@ class UserRoleBadge extends Component
 
     public function getRoleText()
     {
-        return match ($this->role) {
-            1 => 'Manager',
-            2 => 'Admin',
-            3 => 'User',
-            default => 'Unknown',
-        };
+        $role = Role::find($this->role);
+        return $role ? $role->name : 'Unknown';
+        return Role::find($this->role)->name;
     }
 }

@@ -65,7 +65,7 @@
                             id="role_id" 
                             name="role_id" 
                             value="{{ old('role_id') }}"
-                            :options="[1 => 'Admin', 2 => 'Manager', 3 => 'Staff', 4 => 'Employee']"
+                            :options="$roles"
                             error="{{ $errors->first('role_id') }}"
                         />
                         <x-select 

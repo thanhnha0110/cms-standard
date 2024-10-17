@@ -15,8 +15,8 @@ return new class extends Migration
             $table->string('last_name')->after('id')->nullable();
             $table->string('first_name')->after('id')->nullable();
             $table->unsignedBigInteger('role_id')->after('email')->index();
-            $table->unsignedBigInteger('avatar_id')->after('password')->index();
-            $table->string('status')->after('email_verified_at')->index();
+            $table->unsignedBigInteger('avatar_id')->after('password')->index()->nullable();
+            $table->string('status')->after('email_verified_at')->nullable();
             $table->dateTime('last_login')->before('created_at')->nullable();
             $table->softDeletes()->after('updated_at');
 

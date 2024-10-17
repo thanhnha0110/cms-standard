@@ -52,9 +52,9 @@
                                             <input type="checkbox"> Select All
                                             <span></span>
                                         </label>
-                                        @foreach($role['permissions'] as $permisstion => $namePermision)
+                                        @foreach($role['permissions'] as $permission => $namePermission)
                                         <label class="m-checkbox">
-                                            <input type="checkbox" name="permissions[{{ $slug }}][]" value="{{ $permisstion }}"> {{ $namePermision }}
+                                            <input type="checkbox" name="permissions[{{ $slug }}][]" value="{{ $permission }}"> {{ $namePermission }}
                                             <span></span>
                                         </label>
                                         @endforeach

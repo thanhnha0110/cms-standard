@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\Repositories\UserRepository;
 use Exception;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -54,7 +55,11 @@ class UserController extends Controller
     public function create()
     {
         $title = $this->title;
-        return view('users.create', compact('title'));
+        $roles = Role::pluck('name', 'id')->toArray();
+        return view('users.create', compact(
+            'title',
+            'roles'
+        ));
     }
 
     /**
@@ -91,9 +96,11 @@ class UserController extends Controller
     {
         $title = $this->title;
         $item = $this->userRepository->findOrFail($id);
+        $roles = Role::pluck('name', 'id')->toArray();
         return view('users.edit', compact(
             'title',
             'item',
+            'roles'
         ));
     }
 

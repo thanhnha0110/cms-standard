@@ -28,7 +28,7 @@
                                 <th>Email</th>
                                 <th>Created At</th>
                                 <th>Status</th>
-                                <th>Type</th>
+                                <th>Role</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>

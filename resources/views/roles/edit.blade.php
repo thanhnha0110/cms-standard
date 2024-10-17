@@ -52,14 +52,14 @@
                                             <input type="checkbox"> Select All
                                             <span></span>
                                         </label>
-                                        @foreach($role['permissions'] as $permisstion => $namePermision)
+                                        @foreach($role['permissions'] as $permission => $namePermission)
                                         <label class="m-checkbox">
                                             <input 
                                                 type="checkbox" 
                                                 name="permissions[{{ $slug }}][]" 
-                                                value="{{ $permisstion }}" 
-                                                @checked(in_array($slug.'_'.$permisstion, $item->permissions->pluck('name')->toArray()))
-                                            > {{ $namePermision }}
+                                                value="{{ $permission }}" 
+                                                @checked(in_array($slug.'_'.$permission, $item->permissions->pluck('name')->toArray()))
+                                            > {{ $namePermission }}
                                             <span></span>
                                         </label>
                                         @endforeach
