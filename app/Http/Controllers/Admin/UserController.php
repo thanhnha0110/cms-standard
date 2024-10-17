@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\Repositories\UserRepository;
 use Exception;
 
@@ -48,6 +49,28 @@ class UserController extends Controller
     }
 
     /**
+     * Create
+     */
+    public function create()
+    {
+        $title = $this->title;
+        return view('users.create', compact('title'));
+    }
+
+    /**
+     * Store
+     */
+    public function store(UserRequest $request)
+    {
+        try {
+            $this->userRepository->create($request->all());
+            return redirect()->route('users.index')->with('success', trans('notices.create_success_message'));
+        } catch (Exception $e) {
+            return redirect()->route('users.create')->with('error', $e->getMessage());
+        }
+    }
+
+    /**
      * Get and paginate all users
      */
     public function destroy($id)
@@ -77,7 +100,7 @@ class UserController extends Controller
     /**
      * Update
      */
-    public function update($id, Request $request)
+    public function update(UserRequest $request, $id)
     {
         try {
             $item = $this->userRepository->findOrFail($id);
@@ -86,6 +109,5 @@ class UserController extends Controller
         } catch (Exception $e) {
             return redirect()->route('users.edit', $id)->with('error', $e->getMessage());
         }
-        
     }
 }

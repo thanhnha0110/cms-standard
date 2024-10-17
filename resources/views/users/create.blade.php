@@ -7,7 +7,7 @@
         :breadcrumbs="[
             ['url' => 'javascript:void;', 'text' => trans('general.menus.platform_administration')],
             ['url' => route('users.index'), 'text' => $title],
-            ['url' => request()->url(), 'text' => $item->id],
+            ['url' => 'javascript:void;', 'text' => __('Create')],
         ]"  
     />
 
@@ -24,22 +24,22 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    {{ __('Edit') }}
+                                    {{ __('Create') }}
                                 </h3>
                             </div>
                         </div>
                     </div>
 
                     <!--begin::Form-->
-                    <x-form method="PUT" action="{{ route('users.update', $item->id) }}" cancelUrl="{{ route('users.index') }}">
+                    <x-form method="POST" action="{{ route('users.store') }}" cancelUrl="{{ route('users.index') }}">
                         <x-input 
                             required="true"
                             label="{{ trans('general.users.form.first_name') }}" 
                             type="text" 
                             id="first_name" 
                             name="first_name"
-                            value="{{ $item->first_name }}" 
-                            error="" 
+                            value="{{ old('first_name') }}" 
+                            error="{{ $errors->first('first_name') }}" 
                         />
                         <x-input 
                             required="true"
@@ -47,8 +47,8 @@
                             type="text" 
                             id="last_name" 
                             name="last_name" 
-                            value="{{ $item->last_name }}" 
-                            error="" 
+                            value="{{ old('last_name') }}" 
+                            error="{{ $errors->first('last_name') }}" 
                         />
                         <x-input 
                             required="true"
@@ -56,26 +56,26 @@
                             type="text" 
                             id="email" 
                             name="email" 
-                            value="{{ $item->email }}" 
-                            error="{{ $errors->first('email') }}"
+                            value="{{ old('email') }}" 
+                            error="{{ $errors->first('email') }}" 
                         />
                         <x-select 
                             required="true"
                             label="{{ trans('general.users.form.role') }}"
                             id="role_id" 
                             name="role_id" 
-                            value="{{ $item->role_id }}"
+                            value="{{ old('role_id') }}"
                             :options="[1 => 'Admin', 2 => 'Manager', 3 => 'Staff', 4 => 'Employee']"
-                            error=""
+                            error="{{ $errors->first('role_id') }}"
                         />
                         <x-select 
                             required="true"
                             label="{{ trans('general.users.form.status') }}"
                             id="status" 
                             name="status" 
-                            value="{{ $item->status }}"
+                            value="{{ old('status') }}"
                             :options="App\Enums\UserStatusEnum::toArray()"
-                            error=""
+                            error="{{ $errors->first('role_id') }}"
                         />
                     </x-form>
 
@@ -83,7 +83,6 @@
                 </div>
 
                 <!--end::Portlet-->
-
 
             </div>
         </div>
