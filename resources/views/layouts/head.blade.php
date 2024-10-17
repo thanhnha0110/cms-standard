@@ -29,6 +29,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

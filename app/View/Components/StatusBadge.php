@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Enums\UserStatusEnum;
 use Illuminate\View\Component;
 
 class StatusBadge extends Component
@@ -20,21 +21,13 @@ class StatusBadge extends Component
 
     public function getClass()
     {
-        return match ($this->status) {
-            'active' => 'm-badge--success',
-            'inactive' => 'm-badge--warning',
-            'cancelled' => 'm-badge--danger',
-            default => 'm-badge--default',
-        };
+        $status = UserStatusEnum::tryFrom($this->status);
+        return $status ? $status->getClass() : 'm-badge--default';
     }
 
     public function getText()
     {
-        return match ($this->status) {
-            'active' => 'Active',
-            'inactive' => 'Inactive',
-            'cancelled' => 'Cancelled',
-            default => 'Unknown',
-        };
+        $status = UserStatusEnum::tryFrom($this->status);
+        return $status ? $status->getText() : 'Unknown';
     }
 }

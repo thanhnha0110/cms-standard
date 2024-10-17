@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 | GET /users/{user} → show()
 | GET /users/{user}/edit → edit()
 | PUT/PATCH /users/{user} → update()
-| POST /users/{user} → destroy()
+| DELETE /users/{user} → destroy()
 | users.index
 | users.create
 | users.store
@@ -30,7 +30,5 @@ Route::group([
     'prefix' => 'users',
     'as' => 'users.'
 ], function () {
-    Route::resource('/', UserController::class);
-
-    Route::post('/{user}', [UserController::class, 'destroy'])->name('destroy');
+    Route::resource('/', UserController::class)->parameters(['' => 'user']);
 });

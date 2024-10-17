@@ -19,6 +19,13 @@ return [
         'platform_administration' => 'Platform Administrator',
     ],
     'users' => [
-        'title' => 'Users'
+        'title' => 'Users',
+        'form' => [
+            'first_name' => 'First name',
+            'last_name' => 'Last name',
+            'email' => 'Email',
+            'role' => 'Role',
+            'status' => 'Status',
+        ],
     ]
 ];

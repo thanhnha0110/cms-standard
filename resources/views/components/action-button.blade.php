@@ -12,16 +12,22 @@
         if (confirm('Are you sure you want to delete this item?')) {
             $.ajax({
                 url: "{{ route($prefix . '.destroy', $id) }}",
-                method: 'POST',
+                method: 'DELETE',
                 data: {
                     '_token': $('meta[name="csrf-token"]').attr('content'),
                 },
                 success: function(response) {
-                    showAlert(response.data, 'success');
-                    
+                    toastr.success(response.data, 'Success')
+
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
                 },
                 error: function(xhr) {
-                    showAlert(xhr.responseJSON.error.message, 'danger');
+                    toastr.error(xhr.responseJSON.error.message, 'Error')
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
                 }
             });
         }

@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    $title = 'Index';
+    return view('index', compact('title'));
 });
 
 Route::group([
