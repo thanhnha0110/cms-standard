@@ -36,8 +36,8 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td nowrap>
-                                    <x-action-button icon="la la-edit" title="{{ __('Edit') }}" prefix="users" id="{{ $item->id }}" method="GET" />
-                                    <x-action-button icon="la la-trash" title="{{ __('Delete') }}" prefix="users" id="{{ $item->id }}" confirm="true" method="DELETE" />
+                                    <x-action-button icon="la la-edit" title="{{ __('Edit') }}" prefix="roles" id="{{ $item->id }}" method="GET" />
+                                    <x-action-button icon="la la-trash" title="{{ __('Delete') }}" prefix="roles" id="{{ $item->id }}" confirm="true" method="DELETE" />
                                 </td>
                             </tr>
                             @endforeach

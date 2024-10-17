@@ -6,14 +6,14 @@
         :title="$title" 
         :breadcrumbs="[
             ['url' => 'javascript:void;', 'text' => trans('general.menus.platform_administration')],
-            ['url' => route('users.index'), 'text' => $title],
+            ['url' => route('roles.index'), 'text' => $title],
             ['url' => request()->url(), 'text' => $item->id],
         ]"  
     />
 
     <div class="m-content">
         <div class="row ">
-            <div class="col-lg-6">
+            <div class="col-lg-12">
 
                 <!--begin::Portlet-->
                 <div class="m-portlet">
@@ -31,52 +31,44 @@
                     </div>
 
                     <!--begin::Form-->
-                    <x-form method="PUT" action="{{ route('users.update', $item->id) }}" cancelUrl="{{ route('users.index') }}">
+                    <x-form method="PUT" action="{{ route('roles.update', $item->id) }}" cancelUrl="{{ route('roles.index') }}">
                         <x-input 
                             required="true"
-                            label="{{ trans('general.users.form.first_name') }}" 
+                            label="{{ trans('general.roles_and_permissions.form.name') }}" 
                             type="text" 
-                            id="first_name" 
-                            name="first_name"
-                            value="{{ $item->first_name }}" 
-                            error="" 
+                            id="name" 
+                            name="name"
+                            value="{{ $item->name }}" 
+                            error="{{ $errors->first('name') }}" 
                         />
-                        <x-input 
-                            required="true"
-                            label="{{ trans('general.users.form.last_name') }}" 
-                            type="text" 
-                            id="last_name" 
-                            name="last_name" 
-                            value="{{ $item->last_name }}" 
-                            error="" 
-                        />
-                        <x-input 
-                            required="true"
-                            label="{{ trans('general.users.form.email') }}" 
-                            type="text" 
-                            id="email" 
-                            name="email" 
-                            value="{{ $item->email }}" 
-                            error="{{ $errors->first('email') }}"
-                        />
-                        <x-select 
-                            required="true"
-                            label="{{ trans('general.users.form.role') }}"
-                            id="role_id" 
-                            name="role_id" 
-                            value="{{ $item->role_id }}"
-                            :options="[1 => 'Admin', 2 => 'Manager', 3 => 'Staff', 4 => 'Employee']"
-                            error=""
-                        />
-                        <x-select 
-                            required="true"
-                            label="{{ trans('general.users.form.status') }}"
-                            id="status" 
-                            name="status" 
-                            value="{{ $item->status }}"
-                            :options="App\Enums\UserStatusEnum::toArray()"
-                            error=""
-                        />
+
+
+                        @foreach(config('role_and_permission') as $slug => $role)
+                            <div class="m-form__group form-group row">
+                                <label class="col-3 col-form-label"> {{ $role['title'] }} </label>
+                                <div class="col-9">
+                                    <div class="m-checkbox-inline">
+                                        <label class="m-checkbox">
+                                            <input type="checkbox"> Select All
+                                            <span></span>
+                                        </label>
+                                        @foreach($role['permissions'] as $permisstion => $namePermision)
+                                        <label class="m-checkbox">
+                                            <input 
+                                                type="checkbox" 
+                                                name="permissions[{{ $slug }}][]" 
+                                                value="{{ $permisstion }}" 
+                                                @checked(in_array($slug.'_'.$permisstion, $item->permissions->pluck('name')->toArray()))
+                                            > {{ $namePermision }}
+                                            <span></span>
+                                        </label>
+                                        @endforeach
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+
                     </x-form>
 
                     <!--end::Form-->

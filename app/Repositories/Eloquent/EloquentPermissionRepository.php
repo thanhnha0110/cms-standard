@@ -21,19 +21,22 @@ class EloquentPermissionRepository extends EloquentBaseRepository implements Per
         })->orderBy('id', 'desc')->paginate($request->size ?? 10);
     }
 
-
     /**
      * Paginating, ordering and searching through pages for server side index table
      * @param Request $request
      */
-    public function createManyByRole($role, $permissions)
+    public function syncByRole($role, $permissions)
     {
+        $newPermissions = [];
         foreach ($permissions as $roleHas => $list) {
             foreach ($list as $permission) {
-                $namePermission = $roleHas . '_' . $permission;
+                $namePermission = "{$roleHas}_{$permission}";
                 $newPermission = $this->model->updateOrCreate(['name' => $namePermission], ['name' => $namePermission]);
-                $role->givePermissionTo($newPermission);
+                $newPermissions[] = $newPermission->name;
+                
             }
         }
+        
+        $role->syncPermissions($newPermissions);
     }
 }

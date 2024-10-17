@@ -17,5 +17,5 @@ interface PermissionRepository extends BaseRepository
      * Paginating, ordering and searching through pages for server side index table
      * @param Request $request
      */
-    public function createManyByRole($role, array $permissions);
+    public function syncByRole($role, array $permissions);
 }

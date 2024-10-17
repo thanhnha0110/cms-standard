@@ -4,10 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\RoleRequest;
 use App\Repositories\PermissionRepository;
 use App\Repositories\RoleRepository;
-use App\Repositories\UserRepository;
 use Exception;
 
 class RoleController extends Controller
@@ -69,15 +68,14 @@ class RoleController extends Controller
     /**
      * Store
      */
-    public function store(Request $request)
+    public function store(RoleRequest $request)
     {
         try {
             $role = $this->roleRepository->create($request->all());
-            $per = $this->permissionRepository->createManyByRole($role, $request->permissions);
-            
-            return redirect()->route('users.index')->with('success', trans('notices.create_success_message'));
+            $this->permissionRepository->syncByRole($role, $request->permissions);
+            return redirect()->route('roles.index')->with('success', trans('notices.create_success_message'));
         } catch (Exception $e) {
-            return redirect()->route('users.create')->with('error', $e->getMessage());
+            return redirect()->route('roles.create')->with('error', $e->getMessage());
         }
     }
 
@@ -111,14 +109,15 @@ class RoleController extends Controller
     /**
      * Update
      */
-    public function update(UserRequest $request, $id)
+    public function update(RoleRequest $request, $id)
     {
         try {
             $item = $this->roleRepository->findOrFail($id);
             $this->roleRepository->update($item, $request->all());
-            return redirect()->route('users.edit', $id)->with('success', trans('notices.update_success_message'));
+            $this->permissionRepository->syncByRole($item, $request->permissions);
+            return redirect()->route('roles.edit', $id)->with('success', trans('notices.update_success_message'));
         } catch (Exception $e) {
-            return redirect()->route('users.edit', $id)->with('error', $e->getMessage());
+            return redirect()->route('roles.edit', $id)->with('error', $e->getMessage());
         }
     }
 }

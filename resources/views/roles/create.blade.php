@@ -6,7 +6,7 @@
         :title="$title" 
         :breadcrumbs="[
             ['url' => 'javascript:void;', 'text' => trans('general.menus.platform_administration')],
-            ['url' => route('users.index'), 'text' => $title],
+            ['url' => route('roles.index'), 'text' => $title],
             ['url' => 'javascript:void;', 'text' => __('Create')],
         ]"  
     />
