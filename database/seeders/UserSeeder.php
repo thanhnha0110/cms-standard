@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
                 'first_name'=> 'Super',
                 'last_name' => 'Admin',
                 'email'     => 'admin@nhanh.com',
-                'password'  => Hash::make('!admin123'),
+                'password'  => Hash::make(config('core.default.password')),
                 'role_id'   => 1,
             ]
         ];

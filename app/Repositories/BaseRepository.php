@@ -18,13 +18,11 @@ interface BaseRepository
 
     /**
      * @param  int $id
-     * @return $model
      */
     public function findOrFail($id);
 
     /**
      * @param array $condition
-     * @return $model
      */
     public function findMany($condition);
 

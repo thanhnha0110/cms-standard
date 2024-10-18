@@ -46,8 +46,10 @@
                                     <x-user-role-badge role="{{ $item->role_id }}" />
                                 </td>
                                 <td nowrap>
-                                    <x-action-button icon="la la-edit" title="{{ __('Edit') }}" prefix="users" id="{{ $item->id }}" method="GET" />
-                                    <x-action-button icon="la la-trash" title="{{ __('Delete') }}" prefix="users" id="{{ $item->id }}" confirm="true" method="DELETE" />
+                                    @if($item->id != 1)
+                                        <x-action-button icon="la la-edit" title="{{ __('Edit') }}" prefix="users" id="{{ $item->id }}" method="GET" />
+                                        <x-action-button icon="la la-trash" title="{{ __('Delete') }}" prefix="users" id="{{ $item->id }}" confirm="true" method="DELETE" />
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
