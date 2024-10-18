@@ -26,6 +26,8 @@ return [
             'email' => 'Email',
             'role' => 'Role',
             'status' => 'Status',
+            'password' => 'Password',
+            'password_confirmation' => 'Password Confirmation',
         ],
     ],
     'roles_and_permissions' => [
@@ -33,5 +35,8 @@ return [
         'form' => [
             'name' => 'Name',
         ],
+    ],
+    'dashboard' => [
+        'title' => 'Dashboard',
     ],
 ];

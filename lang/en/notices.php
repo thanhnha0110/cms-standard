@@ -14,4 +14,6 @@ return [
     'enum' => [
         'validate_message' => 'The :attribute value you have entered is invalid.',
     ],
+    'sign_in_success_message' => 'Sign in successfully',
+    'sign_in_fail_message' => 'Invalid Email or Password',
 ];

@@ -13,14 +13,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $title = 'Index';
-    return view('index', compact('title'));
-});
+include_once 'admin/auth.php';
 
 Route::group([
     'prefix' => 'admin',
-    // 'middleware' => ['web', 'core']
+    'middleware' => ['auth']
 ], function () {
 
     // Autoload all files in the admin folder
