@@ -39,4 +39,7 @@ return [
     'dashboard' => [
         'title' => 'Dashboard',
     ],
+    'logs' => [
+        'title' => 'Activities Logs',
+    ],
 ];

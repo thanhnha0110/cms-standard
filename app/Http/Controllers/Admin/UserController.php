@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Events\DeletedContentEvent;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
@@ -112,6 +113,9 @@ class UserController extends Controller
         try {
             $item = $this->userRepository->findOrFail($id);
             $this->userRepository->update($item, $request->all());
+
+            event(new DeletedContentEvent(USER_MODULE_SCREEN_NAME, $request, $item));
+
             return redirect()->route('users.edit', $id)->with('success', trans('notices.update_success_message'));
         } catch (Exception $e) {
             return redirect()->route('users.edit', $id)->with('error', $e->getMessage());

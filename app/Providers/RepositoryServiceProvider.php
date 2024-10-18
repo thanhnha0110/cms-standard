@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\ActivityLog;
 use App\Models\User;
+use App\Repositories\Eloquent\EloquentLogRepository;
 use App\Repositories\Eloquent\EloquentPermissionRepository;
 use App\Repositories\Eloquent\EloquentRoleRepository;
 use App\Repositories\Eloquent\EloquentUserRepository;
@@ -44,6 +46,10 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\PermissionRepository', function () {
             return new EloquentPermissionRepository(new Permission());
+        });
+
+        $this->app->bind('App\Repositories\LogRepository', function () {
+            return new EloquentLogRepository(new ActivityLog());
         });
     }
 }

@@ -25,4 +25,10 @@ return [
             'delete' => 'Delete'
         ],
     ],
+    'logs' => [
+        'title' => 'Activities Logs',
+        'permissions' => [
+            'view' => 'View',
+        ],
+    ],
 ];

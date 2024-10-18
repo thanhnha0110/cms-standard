@@ -35,7 +35,8 @@
                 iconClass="flaticon-interface-7" 
                 :activeClass="
                     Route::is('users.*') ||
-                    Route::is('roles.*')
+                    Route::is('roles.*') ||
+                    Route::is('logs.*') 
                     ? 'm-menu__item--expanded m-menu__item--open' : ''"
             >
                 <x-sub-menu-item 
@@ -50,7 +51,12 @@
                     text="{{ trans('general.users.title') }}" 
                     :activeClass="Route::is('users.*') ? 'm-menu__item--active' : ''"
                 />
-                <x-sub-menu-item link="components/base/stack.html" text="Activities Logs"/>
+                <x-sub-menu-item 
+                    :permissions="['logs_view']"
+                    link="{{ route('logs.index') }}" 
+                    text="{{ trans('general.logs.title') }}" 
+                    :activeClass="Route::is('logs.*') ? 'm-menu__item--active' : ''"
+                />
                 <x-sub-menu-item link="components/base/stack.html" text="Backups"/>
             </x-menu-item>
         </ul>
