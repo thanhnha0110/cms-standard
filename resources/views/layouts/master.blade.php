@@ -30,7 +30,6 @@
 
 		<x-sidebar />
 		<x-scroll-top />
-		<x-quick-nav />
 		<x-scripts />
 	</body>
 

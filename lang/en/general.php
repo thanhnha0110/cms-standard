@@ -12,7 +12,7 @@ return [
     | has failed, such as for an invalid token or invalid new password.
     |
     */
-
+    'login' => 'Login',
     'menus' => [
         'dashboard' => 'Dashboard',
         'settings' => 'Settings',

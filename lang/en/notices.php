@@ -16,4 +16,5 @@ return [
     ],
     'sign_in_success_message' => 'Sign in successfully',
     'sign_in_fail_message' => 'Invalid Email or Password',
+    'sign_out_success_message' => 'Sign out successfully',
 ];

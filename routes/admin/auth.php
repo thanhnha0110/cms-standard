@@ -12,3 +12,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('', [AuthController::class, 'getLogin'])->name('get.login');;
 Route::post('', [AuthController::class, 'postLogin'])->name('post.login');
+Route::get('logout', [AuthController::class, 'logout'])->name('logout');

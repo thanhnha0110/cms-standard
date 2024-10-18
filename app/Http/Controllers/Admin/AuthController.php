@@ -31,7 +31,8 @@ class AuthController extends Controller
         if (Auth::check()) {
             return redirect()->route('dashboard.index');
         } else {
-            return redirect()->route('get.login');
+            $title = trans('general.login');
+            return view('auth.login', compact('title'));
         }
     }
 
@@ -52,5 +53,16 @@ class AuthController extends Controller
         } catch (Exception $e) {
             return redirect()->route('get.login')->with('error', $e->getMessage());
         }
+    }
+
+    /**
+     * Logout
+     *
+     * @return void
+     */
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('get.login')->with('success', trans('notices.sign_out_success_message'));
     }
 }

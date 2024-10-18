@@ -1,6 +1,12 @@
 <?php
 
 return [
+    'dashboard' => [
+        'title' => 'Dashboard',
+        'permissions' => [
+            'view' => 'View',
+        ],
+    ],
     'roles' => [
         'title' => 'Roles and Permissions',
         'permissions' => [
