@@ -4,15 +4,17 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class MenuItem extends Component
+class MenuSingle extends Component
 {
+    public $link;
     public $text;
     public $iconClass;
     public $activeClass;
     public $permissions;
 
-    public function __construct($text, $iconClass, $activeClass = '', $permissions = null)
+    public function __construct($link, $text, $iconClass, $activeClass = '', $permissions = null)
     {
+        $this->link = $link;
         $this->text = $text;
         $this->iconClass = $iconClass;
         $this->activeClass = $activeClass;
@@ -21,7 +23,7 @@ class MenuItem extends Component
 
     public function render()
     {
-        return view('components.menu-item');
+        return view('components.menu-single');
     }
 
     public function shouldRender()
