@@ -12,8 +12,9 @@ class ActionButton extends Component
     public $id;
     public $confirm;
     public $method;
+    public $permissions;
 
-    public function __construct(string $icon, string $title, string $prefix, int $id, bool $confirm = false, string $method = 'GET')
+    public function __construct(string $icon, string $title, string $prefix, int $id, bool $confirm = false, string $method = 'GET', $permissions = null)
     {
         $this->icon = $icon;
         $this->title = $title;
@@ -21,6 +22,7 @@ class ActionButton extends Component
         $this->id = $id;
         $this->confirm = $confirm;
         $this->method = $method;
+        $this->permissions = $permissions;
     }
 
     public function render()
@@ -32,5 +34,20 @@ class ActionButton extends Component
     {
         if ($this->method == 'DELETE') return 'javascript:void;';
         return route("{$this->prefix}.edit", $this->id);
+    }
+
+    public function shouldRender()
+    {
+        if (is_null($this->permissions)) {
+            return true;
+        }
+
+        foreach ($this->permissions as $permission) {
+            if (has_permission($permission)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

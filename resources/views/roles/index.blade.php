@@ -12,7 +12,7 @@
 
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
-            <x-table-head />
+            <x-table-head :permissions="['roles_create']" />
 
             <div class="m-portlet__body">
                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -36,8 +36,23 @@
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->created_at }}</td>
                                 <td nowrap>
-                                    <x-action-button icon="la la-edit" title="{{ __('Edit') }}" prefix="roles" id="{{ $item->id }}" method="GET" />
-                                    <x-action-button icon="la la-trash" title="{{ __('Delete') }}" prefix="roles" id="{{ $item->id }}" confirm="true" method="DELETE" />
+                                    <x-action-button 
+                                        :permissions="['roles_edit']" 
+                                        icon="la la-edit" 
+                                        title="{{ __('Edit') }}" 
+                                        prefix="roles" 
+                                        id="{{ $item->id }}" 
+                                        method="GET" 
+                                    />
+                                    <x-action-button 
+                                        :permissions="['roles_delete']" 
+                                        icon="la la-trash" 
+                                        title="{{ __('Delete') }}"
+                                        prefix="roles" 
+                                        id="{{ $item->id }}" 
+                                        confirm="true" 
+                                        method="DELETE" 
+                                    />
                                 </td>
                             </tr>
                             @endforeach

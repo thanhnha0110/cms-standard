@@ -12,7 +12,7 @@
 
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
-            <x-table-head />
+            <x-table-head :permissions="['users_create']" />
 
             <div class="m-portlet__body">
                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -46,10 +46,23 @@
                                     <x-user-role-badge role="{{ $item->role_id }}" />
                                 </td>
                                 <td nowrap>
-                                    @if($item->id != 1)
-                                        <x-action-button icon="la la-edit" title="{{ __('Edit') }}" prefix="users" id="{{ $item->id }}" method="GET" />
-                                        <x-action-button icon="la la-trash" title="{{ __('Delete') }}" prefix="users" id="{{ $item->id }}" confirm="true" method="DELETE" />
-                                    @endif
+                                    <x-action-button 
+                                        :permissions="['users_edit']" 
+                                        icon="la la-edit" 
+                                        title="{{ __('Edit') }}" 
+                                        prefix="users" 
+                                        id="{{ $item->id }}" 
+                                        method="GET" 
+                                    />
+                                    <x-action-button 
+                                        :permissions="['users_delete']" 
+                                        icon="la la-trash" 
+                                        title="{{ __('Delete') }}"
+                                        prefix="users" 
+                                        id="{{ $item->id }}" 
+                                        confirm="true" 
+                                        method="DELETE" 
+                                    />
                                 </td>
                             </tr>
                             @endforeach
