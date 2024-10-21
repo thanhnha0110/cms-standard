@@ -11,7 +11,7 @@
     function confirmDelete(prefix, id) {
         if (confirm('Are you sure you want to delete this item?')) {
             $.ajax({
-                url: "{{ route($prefix . '.destroy', $id) }}",
+                url: `{{ url('admin/${prefix}/') }}/${id}`,
                 method: 'DELETE',
                 data: {
                     '_token': $('meta[name="csrf-token"]').attr('content'),

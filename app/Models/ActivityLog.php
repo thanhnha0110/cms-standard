@@ -20,11 +20,28 @@ class ActivityLog extends Model
 
     public function causedBy()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function reference()
     {
         return $this->morphTo();
     }
+    
+    public function generateAction()
+    {
+        $nameReference = $this->getReferenceName();
+        $createdAt = '<small>' . $this->created_at->diffForHumans() . '</small>';
+        $causedBy = '<strong>' . $this->causedBy->getFullName() . '</strong>';
+        return "{$causedBy} {$this->action} {$this->module} \"{$nameReference}\" . {$createdAt} ({$this->ip_address})";
+    }
+
+    private function getReferenceName(): string
+    {
+        $default = 'ID: ' . $this->reference_id;
+        if (isset($this->reference)) {
+            return $this->reference->name ?? $this->reference->getFullName() ?? $this->reference->title ?? $default;
+        }
+        return $default;
+    } 
 }

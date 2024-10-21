@@ -4,10 +4,10 @@ namespace App\Listeners;
 
 use App\Enums\LogActionEnum;
 
-class DeletedContentListener extends BaseContentListener
+class CreatedContentListener extends BaseContentListener
 {
     public function handle($event)
     {
-        parent::store($event, LogActionEnum::DELETED);
+        parent::store($event, LogActionEnum::CREATED);
     }
 }

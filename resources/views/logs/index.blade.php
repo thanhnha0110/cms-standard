@@ -24,36 +24,14 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Module</th>
-                                <th>Created At</th>
-                                <th>Actions</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
                             <tr>
                                 <td>{{ $item->id }}</td>
-                                <td>{{ $item->module }}</td>
-                                <td>{{ $item->created_at }}</td>
-                                <td nowrap>
-                                    <x-action-button 
-                                        :permissions="['users_edit']" 
-                                        icon="la la-edit" 
-                                        title="{{ __('Edit') }}" 
-                                        prefix="users" 
-                                        id="{{ $item->id }}" 
-                                        method="GET" 
-                                    />
-                                    <x-action-button 
-                                        :permissions="['users_delete']" 
-                                        icon="la la-trash" 
-                                        title="{{ __('Delete') }}"
-                                        prefix="users" 
-                                        id="{{ $item->id }}" 
-                                        confirm="true" 
-                                        method="DELETE" 
-                                    />
-                                </td>
+                                <td>{!! $item->generateAction() !!}</td>
                             </tr>
                             @endforeach
                         </tbody>
