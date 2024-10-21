@@ -12,7 +12,7 @@ class Form extends Component
     public $cancelLabel;
     public $cancelUrl;
 
-    public function __construct($method, $action, $submitLabel = 'Submit', $cancelLabel = 'Cancel', $cancelUrl = null)
+    public function __construct($method, $action, $submitLabel = 'Save', $cancelLabel = 'Cancel', $cancelUrl = null)
     {
         $this->method = $method;
         $this->action = $action;

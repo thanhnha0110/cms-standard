@@ -12,7 +12,6 @@
 
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
-            <x-table-head :permissions="['users_create']" />
 
             <div class="m-portlet__body">
                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
