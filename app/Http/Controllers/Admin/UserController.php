@@ -43,7 +43,7 @@ class UserController extends Controller
         $size = $request->size;
         $search = $request->search;
         $items = $this->userRepository->serverPaginationFilteringFor($request);
-        return view('users.index', compact(
+        return view('system.users.index', compact(
             'title',
             'page',
             'size',
@@ -59,7 +59,7 @@ class UserController extends Controller
     {
         $title = $this->title;
         $roles = Role::pluck('name', 'id')->toArray();
-        return view('users.create', compact(
+        return view('system.users.create', compact(
             'title',
             'roles'
         ));
@@ -75,9 +75,9 @@ class UserController extends Controller
 
             event(new CreatedContentEvent(USER_MODULE_SCREEN_NAME, $request, $item));
 
-            return redirect()->route('users.index')->with('success', trans('notices.create_success_message'));
+            return redirect()->route('system.users.index')->with('success', trans('notices.create_success_message'));
         } catch (Exception $e) {
-            return redirect()->route('users.create')->with('error', $e->getMessage());
+            return redirect()->route('system.users.create')->with('error', $e->getMessage());
         }
     }
 
@@ -106,7 +106,7 @@ class UserController extends Controller
         $title = $this->title;
         $item = $this->userRepository->findOrFail($id);
         $roles = Role::pluck('name', 'id')->toArray();
-        return view('users.edit', compact(
+        return view('system.users.edit', compact(
             'title',
             'item',
             'roles'
@@ -124,9 +124,9 @@ class UserController extends Controller
 
             event(new UpdatedContentEvent(USER_MODULE_SCREEN_NAME, $request, $item));
 
-            return redirect()->route('users.edit', $id)->with('success', trans('notices.update_success_message'));
+            return redirect()->route('system.users.edit', $id)->with('success', trans('notices.update_success_message'));
         } catch (Exception $e) {
-            return redirect()->route('users.edit', $id)->with('error', $e->getMessage());
+            return redirect()->route('system.users.edit', $id)->with('error', $e->getMessage());
         }
     }
 }

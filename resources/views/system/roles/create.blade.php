@@ -6,8 +6,8 @@
         :title="$title" 
         :breadcrumbs="[
             ['url' => 'javascript:void;', 'text' => trans('general.menus.platform_administration')],
-            ['url' => route('roles.index'), 'text' => $title],
-            ['url' => request()->url(), 'text' => $item->id],
+            ['url' => route('system.roles.index'), 'text' => $title],
+            ['url' => 'javascript:void;', 'text' => __('Create')],
         ]"  
     />
 
@@ -24,21 +24,21 @@
                                     <i class="la la-gear"></i>
                                 </span>
                                 <h3 class="m-portlet__head-text">
-                                    {{ __('Edit') }}
+                                    {{ __('Create') }}
                                 </h3>
                             </div>
                         </div>
                     </div>
 
                     <!--begin::Form-->
-                    <x-form method="PUT" action="{{ route('roles.update', $item->id) }}" cancelUrl="{{ route('roles.index') }}">
+                    <x-form method="POST" action="{{ route('system.roles.store') }}" cancelUrl="{{ route('system.roles.index') }}">
                         <x-input 
                             required="true"
                             label="{{ trans('general.roles_and_permissions.form.name') }}" 
                             type="text" 
                             id="name" 
                             name="name"
-                            value="{{ $item->name }}" 
+                            value="{{ old('name') }}" 
                             error="{{ $errors->first('name') }}" 
                         />
 
@@ -54,12 +54,7 @@
                                         </label>
                                         @foreach($role['permissions'] as $permission => $namePermission)
                                         <label class="m-checkbox">
-                                            <input 
-                                                type="checkbox" 
-                                                name="permissions[{{ $slug }}][]" 
-                                                value="{{ $permission }}" 
-                                                @checked(in_array($slug.'_'.$permission, $item->permissions->pluck('name')->toArray()))
-                                            > {{ $namePermission }}
+                                            <input type="checkbox" name="permissions[{{ $slug }}][]" value="{{ $permission }}"> {{ $namePermission }}
                                             <span></span>
                                         </label>
                                         @endforeach
@@ -68,14 +63,13 @@
                                 </div>
                             </div>
                         @endforeach
-
+                        
                     </x-form>
 
                     <!--end::Form-->
                 </div>
 
                 <!--end::Portlet-->
-
 
             </div>
         </div>

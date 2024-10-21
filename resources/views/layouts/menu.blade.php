@@ -17,16 +17,31 @@
             />
 
             <x-menu-item 
+                :permissions="['roles_view', 'users_view']"
                 text="{{ trans('general.menus.settings') }}" 
                 iconClass="flaticon-settings"
+                :activeClass="
+                    Route::is('settings.*')
+                    ? 'm-menu__item--expanded m-menu__item--open' : ''"
             >
-                <x-sub-menu-item link="components/base/state.html" text="General"/>
-                <x-sub-menu-item link="components/base/typography.html" text="Email"/>
-                <x-sub-menu-item link="components/base/stack.html" text="Language"/>
-                <x-sub-menu-item link="components/base/stack.html" text="Media"/>
-                <x-sub-menu-item link="components/base/stack.html" text="Pemarlink"/>
-                <x-sub-menu-item link="components/base/stack.html" text="Cronjob"/>
-                <x-sub-menu-item link="components/base/stack.html" text="API Settings"/>
+                <x-sub-menu-item 
+                    :permissions="['roles_view']"
+                    link="{{ route('settings.general.get') }}" 
+                    text="{{ trans('general.settings.general.title') }}" 
+                    :activeClass="Route::is('settings.general.*') ? 'm-menu__item--active' : ''"
+                />
+                <x-sub-menu-item 
+                    :permissions="['roles_view']"
+                    link="{{ route('settings.email.get') }}" 
+                    text="{{ trans('general.settings.email.title') }}" 
+                    :activeClass="Route::is('settings.email.*') ? 'm-menu__item--active' : ''"
+                />
+                <x-sub-menu-item 
+                    :permissions="['roles_view']"
+                    link="{{ route('settings.api.get') }}" 
+                    text="{{ trans('general.settings.api.title') }}" 
+                    :activeClass="Route::is('settings.api.*') ? 'm-menu__item--active' : ''"
+                />
             </x-menu-item>
 
             <x-menu-item 
@@ -34,30 +49,28 @@
                 text="{{ trans('general.menus.platform_administration') }}" 
                 iconClass="flaticon-interface-7" 
                 :activeClass="
-                    Route::is('users.*') ||
-                    Route::is('roles.*') ||
-                    Route::is('logs.*') 
+                    Route::is('system.*')
                     ? 'm-menu__item--expanded m-menu__item--open' : ''"
             >
                 <x-sub-menu-item 
                     :permissions="['roles_view']"
-                    link="{{ route('roles.index') }}" 
+                    link="{{ route('system.roles.index') }}" 
                     text="{{ trans('general.roles_and_permissions.title') }}" 
                     :activeClass="Route::is('roles.*') ? 'm-menu__item--active' : ''"
                 />
                 <x-sub-menu-item 
                     :permissions="['users_view']"
-                    link="{{ route('users.index') }}" 
+                    link="{{ route('system.users.index') }}" 
                     text="{{ trans('general.users.title') }}" 
                     :activeClass="Route::is('users.*') ? 'm-menu__item--active' : ''"
                 />
                 <x-sub-menu-item 
                     :permissions="['logs_view']"
-                    link="{{ route('logs.index') }}" 
+                    link="{{ route('system.logs.index') }}" 
                     text="{{ trans('general.logs.title') }}" 
                     :activeClass="Route::is('logs.*') ? 'm-menu__item--active' : ''"
                 />
-                <x-sub-menu-item link="components/base/stack.html" text="Backups"/>
+                <x-sub-menu-item link="javascript:;" text="Backups"/>
             </x-menu-item>
         </ul>
     </div>

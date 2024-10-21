@@ -9,9 +9,11 @@
 
 <script>
     function confirmDelete(prefix, id) {
+        console.log(prefix)
+        let newPrefix = prefix.replace(".", "/");
         if (confirm('Are you sure you want to delete this item?')) {
             $.ajax({
-                url: `{{ url('admin/${prefix}/') }}/${id}`,
+                url: `{{ url('admin/${newPrefix}/') }}/${id}`,
                 method: 'DELETE',
                 data: {
                     '_token': $('meta[name="csrf-token"]').attr('content'),

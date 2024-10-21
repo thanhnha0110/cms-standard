@@ -6,7 +6,7 @@
         :title="$title" 
         :breadcrumbs="[
             ['url' => 'javascript:void;', 'text' => trans('general.menus.platform_administration')],
-            ['url' => route('users.index'), 'text' => $title],
+            ['url' => route('system.users.index'), 'text' => $title],
             ['url' => 'javascript:void;', 'text' => __('Create')],
         ]"  
     />
@@ -31,7 +31,7 @@
                     </div>
 
                     <!--begin::Form-->
-                    <x-form method="POST" action="{{ route('users.store') }}" cancelUrl="{{ route('users.index') }}">
+                    <x-form method="POST" action="{{ route('system.users.store') }}" cancelUrl="{{ route('system.users.index') }}">
                         <x-input 
                             required="true"
                             label="{{ trans('general.users.form.first_name') }}" 

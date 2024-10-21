@@ -42,4 +42,15 @@ return [
     'logs' => [
         'title' => 'Activities Logs',
     ],
+    'settings' => [
+        'general' => [
+            'title' => 'General',
+        ],
+        'email' => [
+            'title' => 'Email',
+        ],
+        'api' => [
+            'title' => 'API Settings',
+        ],
+    ],
 ];

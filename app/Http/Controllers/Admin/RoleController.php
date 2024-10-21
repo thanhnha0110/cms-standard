@@ -47,7 +47,7 @@ class RoleController extends Controller
         $size = $request->size;
         $search = $request->search;
         $items = $this->roleRepository->serverPaginationFilteringFor($request);
-        return view('roles.index', compact(
+        return view('system.roles.index', compact(
             'title',
             'page',
             'size',
@@ -62,7 +62,7 @@ class RoleController extends Controller
     public function create()
     {
         $title = $this->title;
-        return view('roles.create', compact('title'));
+        return view('system.roles.create', compact('title'));
     }
 
     /**
@@ -73,9 +73,9 @@ class RoleController extends Controller
         try {
             $role = $this->roleRepository->create($request->all());
             $this->permissionRepository->syncByRole($role, $request->permissions);
-            return redirect()->route('roles.index')->with('success', trans('notices.create_success_message'));
+            return redirect()->route('system.roles.index')->with('success', trans('notices.create_success_message'));
         } catch (Exception $e) {
-            return redirect()->route('roles.create')->with('error', $e->getMessage());
+            return redirect()->route('system.roles.create')->with('error', $e->getMessage());
         }
     }
 
@@ -100,7 +100,7 @@ class RoleController extends Controller
     {
         $title = $this->title;
         $item = $this->roleRepository->findOrFail($id);
-        return view('roles.edit', compact(
+        return view('system.roles.edit', compact(
             'title',
             'item',
         ));
@@ -115,9 +115,9 @@ class RoleController extends Controller
             $item = $this->roleRepository->findOrFail($id);
             $this->roleRepository->update($item, $request->all());
             $this->permissionRepository->syncByRole($item, $request->permissions);
-            return redirect()->route('roles.edit', $id)->with('success', trans('notices.update_success_message'));
+            return redirect()->route('system.roles.edit', $id)->with('success', trans('notices.update_success_message'));
         } catch (Exception $e) {
-            return redirect()->route('roles.edit', $id)->with('error', $e->getMessage());
+            return redirect()->route('system.roles.edit', $id)->with('error', $e->getMessage());
         }
     }
 }

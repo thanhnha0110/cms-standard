@@ -36,7 +36,7 @@ class LogController extends Controller
         $size = $request->size;
         $search = $request->search;
         $items = $this->logRepository->serverPaginationFilteringFor($request);
-        return view('logs.index', compact(
+        return view('system.logs.index', compact(
             'title',
             'page',
             'size',
