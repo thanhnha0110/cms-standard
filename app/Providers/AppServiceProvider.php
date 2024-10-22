@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helpers\SettingHelper;
 use App\Models\User;
 use App\Observers\UserObserver;
 use Illuminate\Pagination\Paginator;
@@ -14,7 +15,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->singleton('setting', function () {
+            return new SettingHelper();
+        });
     }
 
     /**

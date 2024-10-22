@@ -90,7 +90,7 @@ interface BaseRepository
     /**
      * Find a resource by an array of attributes
      * @param  array $attributes
-     * @return $model
+     * @return object
      */
     public function findByAttributes(array $attributes);
 

@@ -2,44 +2,50 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\Facades\SettingStore;
 use App\Http\Controllers\Controller;
-use App\Repositories\LogRepository;
+use App\Repositories\SettingRepository;
+use Exception;
 use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
     /**
-     * @var LogRepository
+     * @var SettingRepository
      */
-    private $logRepository;
+    private $settingRepository;
 
     /**
      * SettingController constructor.
      */
     public function __construct(
-        LogRepository $logRepository,
+        SettingRepository $settingRepository,
     ) {
-        $this->logRepository = $logRepository;
+        $this->settingRepository = $settingRepository;
     }
 
 
     /**
-     * Get and paginate all users
+     * Get general
      */
     public function getGeneral(Request $request)
     {
         $title = trans('general.settings.general.title');
-        $page = $request->page;
-        $size = $request->size;
-        $search = $request->search;
-        $items = $this->logRepository->serverPaginationFilteringFor($request);
-        return view('settings.general', compact(
-            'title',
-            'page',
-            'size',
-            'search',
-            'items',
-        ));
+        return view('settings.general', compact('title'));
+    }
+
+    /**
+     * Update general
+     */
+    public function postGeneral(Request $request)
+    {
+        try {
+            $params = SettingStore::prepareInsertData($request->all());
+            $this->settingRepository->updateOrCreateMany($params);
+            return redirect()->route('settings.general.get')->with('success', trans('notices.create_success_message'));
+        } catch (Exception $e) {
+            return redirect()->route('settings.general.get')->with('error', $e->getMessage());
+        }
     }
 
     /**

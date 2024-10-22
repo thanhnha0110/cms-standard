@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Models\ActivityLog;
+use App\Models\Setting;
 use App\Models\User;
 use App\Repositories\Eloquent\EloquentLogRepository;
 use App\Repositories\Eloquent\EloquentPermissionRepository;
 use App\Repositories\Eloquent\EloquentRoleRepository;
+use App\Repositories\Eloquent\EloquentSettingRepository;
 use App\Repositories\Eloquent\EloquentUserRepository;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Permission;
@@ -50,6 +52,10 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\LogRepository', function () {
             return new EloquentLogRepository(new ActivityLog());
+        });
+
+        $this->app->bind('App\Repositories\SettingRepository', function () {
+            return new EloquentSettingRepository(new Setting());
         });
     }
 }

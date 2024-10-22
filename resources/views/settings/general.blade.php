@@ -16,7 +16,7 @@
         <div class="m-portlet">
 
             <!--begin::Form-->
-            <x-form method="POST" action="{{ route('system.users.store') }}" cancelUrl="{{ route('system.users.index') }}">
+            <x-form method="POST" action="{{ route('settings.general.post') }}" cancelUrl="{{ route('settings.general.get') }}">
                 <ul class="nav nav-tabs  m-tabs-line" role="tablist">
                     <li class="nav-item m-tabs__item">
                         <a class="nav-link m-tabs__link active show" data-toggle="tab" href="#general_information" role="tab" aria-selected="true">{{ trans('general.settings.general.form.information') }}</a>
@@ -29,19 +29,19 @@
                     <div class="tab-pane active show" id="general_information" role="tabpanel">
                         <x-select 
                             label="{{ trans('general.settings.general.form.timezone') }}"
-                            id="status" 
-                            name="status" 
-                            value="{{ old('status') }}"
-                            :options="App\Enums\UserStatusEnum::toArray()"
-                            error="{{ $errors->first('role_id') }}"
+                            id="timezone" 
+                            name="timezone" 
+                            value="{{ setting('timezone', 'UTC') }}"
+                            :options="DateTimeZone::listIdentifiers()"
+                            error="{{ $errors->first('timezone') }}"
                         />
                         <x-select 
                             label="{{ trans('general.settings.general.form.site_language') }}"
-                            id="status" 
-                            name="status" 
-                            value="{{ old('status') }}"
-                            :options="App\Enums\UserStatusEnum::toArray()"
-                            error="{{ $errors->first('role_id') }}"
+                            id="site_language" 
+                            name="site_language" 
+                            value="{{ setting('site_language', 'en') }}"
+                            :options="App\Enums\SiteLanguageEnum::toArray()"
+                            error="{{ $errors->first('site_language') }}"
                         />
                         
                     </div>
@@ -49,10 +49,10 @@
                         <x-input 
                             label="{{ trans('general.settings.general.form.admin_title') }}" 
                             type="text" 
-                            id="first_name" 
-                            name="first_name"
-                            value="{{ old('first_name') }}" 
-                            error="{{ $errors->first('first_name') }}" 
+                            id="admin_title" 
+                            name="admin_title"
+                            value="{{ setting('admin_title', '') }}" 
+                            error="{{ $errors->first('admin_title') }}" 
                         />
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-12 col-sm-12">{{ trans('general.settings.general.form.admin_logo') }}</label>
