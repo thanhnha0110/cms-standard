@@ -54,17 +54,7 @@ class SettingController extends Controller
     public function getEmail(Request $request)
     {
         $title = trans('general.settings.email.title');
-        $page = $request->page;
-        $size = $request->size;
-        $search = $request->search;
-        $items = $this->logRepository->serverPaginationFilteringFor($request);
-        return view('settings.logs.index', compact(
-            'title',
-            'page',
-            'size',
-            'search',
-            'items',
-        ));
+        return view('settings.email', compact('title'));
     }
 
     /**
@@ -73,16 +63,6 @@ class SettingController extends Controller
     public function getApi(Request $request)
     {
         $title = trans('general.settings.api.title');
-        $page = $request->page;
-        $size = $request->size;
-        $search = $request->search;
-        $items = $this->logRepository->serverPaginationFilteringFor($request);
-        return view('settings.logs.index', compact(
-            'title',
-            'page',
-            'size',
-            'search',
-            'items',
-        ));
+        return view('settings.api', compact('title'));
     }
 }
