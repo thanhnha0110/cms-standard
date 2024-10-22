@@ -45,6 +45,21 @@ return [
     'settings' => [
         'general' => [
             'title' => 'General',
+            'form' => [
+                'information' => 'General Information',
+                'appearance' => 'Admin appearance',
+                'company_name' => 'Company name',
+                'company_email' => 'Company email',
+                'company_phone' => 'Company phone',
+                'company_tax' => 'Company tax',
+                'company_fax' => 'Company fax',
+                'company_address' => 'Company address',
+                'timezone' => 'Timezone',
+                'site_language' => 'Site language',
+                'admin_title' => 'Admin title',
+                'admin_logo' => 'Admin logo',
+                'admin_favicon' => 'Admin favicon',
+            ],
         ],
         'email' => [
             'title' => 'Email',

@@ -8,8 +8,6 @@ use Illuminate\Http\Request;
 
 class SettingController extends Controller
 {
-    public $title;
-
     /**
      * @var LogRepository
      */
@@ -22,7 +20,6 @@ class SettingController extends Controller
         LogRepository $logRepository,
     ) {
         $this->logRepository = $logRepository;
-        $this->title = trans('general.logs.title');
     }
 
 
@@ -31,12 +28,12 @@ class SettingController extends Controller
      */
     public function getGeneral(Request $request)
     {
-        $title = $this->title;
+        $title = trans('general.settings.general.title');
         $page = $request->page;
         $size = $request->size;
         $search = $request->search;
         $items = $this->logRepository->serverPaginationFilteringFor($request);
-        return view('logs.index', compact(
+        return view('settings.general', compact(
             'title',
             'page',
             'size',
@@ -50,12 +47,12 @@ class SettingController extends Controller
      */
     public function getEmail(Request $request)
     {
-        $title = $this->title;
+        $title = trans('general.settings.email.title');
         $page = $request->page;
         $size = $request->size;
         $search = $request->search;
         $items = $this->logRepository->serverPaginationFilteringFor($request);
-        return view('logs.index', compact(
+        return view('settings.logs.index', compact(
             'title',
             'page',
             'size',
@@ -69,12 +66,12 @@ class SettingController extends Controller
      */
     public function getApi(Request $request)
     {
-        $title = $this->title;
+        $title = trans('general.settings.api.title');
         $page = $request->page;
         $size = $request->size;
         $search = $request->search;
         $items = $this->logRepository->serverPaginationFilteringFor($request);
-        return view('logs.index', compact(
+        return view('settings.logs.index', compact(
             'title',
             'page',
             'size',

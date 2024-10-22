@@ -7,6 +7,27 @@ return [
             'view' => 'View',
         ],
     ],
+    'general' => [
+        'title' => 'Setting General',
+        'permissions' => [
+            'edit' => 'Edit',
+            'view' => 'View',
+        ],
+    ],
+    'email' => [
+        'title' => 'Setting Email',
+        'permissions' => [
+            'edit' => 'Edit',
+            'view' => 'View',
+        ],
+    ],
+    'api' => [
+        'title' => 'Setting API',
+        'permissions' => [
+            'edit' => 'Edit',
+            'view' => 'View',
+        ],
+    ],
     'roles' => [
         'title' => 'Roles and Permissions',
         'permissions' => [

@@ -45,7 +45,7 @@
             </x-menu-item>
 
             <x-menu-item 
-                :permissions="['roles_view', 'users_view']"
+                :permissions="['roles_view', 'users_view', 'logs_view']"
                 text="{{ trans('general.menus.platform_administration') }}" 
                 iconClass="flaticon-interface-7" 
                 :activeClass="
@@ -56,19 +56,19 @@
                     :permissions="['roles_view']"
                     link="{{ route('system.roles.index') }}" 
                     text="{{ trans('general.roles_and_permissions.title') }}" 
-                    :activeClass="Route::is('roles.*') ? 'm-menu__item--active' : ''"
+                    :activeClass="Route::is('system.roles.*') ? 'm-menu__item--active' : ''"
                 />
                 <x-sub-menu-item 
                     :permissions="['users_view']"
                     link="{{ route('system.users.index') }}" 
                     text="{{ trans('general.users.title') }}" 
-                    :activeClass="Route::is('users.*') ? 'm-menu__item--active' : ''"
+                    :activeClass="Route::is('system.users.*') ? 'm-menu__item--active' : ''"
                 />
                 <x-sub-menu-item 
                     :permissions="['logs_view']"
                     link="{{ route('system.logs.index') }}" 
                     text="{{ trans('general.logs.title') }}" 
-                    :activeClass="Route::is('logs.*') ? 'm-menu__item--active' : ''"
+                    :activeClass="Route::is('system.logs.*') ? 'm-menu__item--active' : ''"
                 />
                 <x-sub-menu-item link="javascript:;" text="Backups"/>
             </x-menu-item>
