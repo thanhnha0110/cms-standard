@@ -17,6 +17,7 @@ return [
         'dashboard' => 'Dashboard',
         'settings' => 'Settings',
         'platform_administration' => 'Platform Administrator',
+        'management' => 'Management',
     ],
     'users' => [
         'title' => 'Users',
@@ -66,6 +67,14 @@ return [
         ],
         'api' => [
             'title' => 'API Settings',
+        ],
+    ],
+    'categories' => [
+        'title' => 'Categories',
+        'form' => [
+            'name' => 'Name',
+            'icon' => 'Icon',
+            'type' => 'Type',
         ],
     ],
 ];

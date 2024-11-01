@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Models\ActivityLog;
+use App\Models\Category;
 use App\Models\Setting;
 use App\Models\User;
+use App\Repositories\Eloquent\EloquentCategoryRepository;
 use App\Repositories\Eloquent\EloquentLogRepository;
 use App\Repositories\Eloquent\EloquentPermissionRepository;
 use App\Repositories\Eloquent\EloquentRoleRepository;
@@ -56,6 +58,10 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\SettingRepository', function () {
             return new EloquentSettingRepository(new Setting());
+        });
+
+        $this->app->bind('App\Repositories\CategoryRepository', function () {
+            return new EloquentCategoryRepository(new Category());
         });
     }
 }

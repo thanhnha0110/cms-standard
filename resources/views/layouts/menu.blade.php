@@ -18,6 +18,22 @@
 
             <x-menu-item 
                 :permissions="['roles_view', 'users_view']"
+                text="{{ trans('general.menus.management') }}" 
+                iconClass="flaticon-piggy-bank"
+                :activeClass="
+                    Route::is('management.*')
+                    ? 'm-menu__item--expanded m-menu__item--open' : ''"
+            >
+                <x-sub-menu-item 
+                :permissions="['roles_view']"
+                link="{{ route('management.categories.index') }}" 
+                text="{{ trans('general.categories.title') }}" 
+                :activeClass="Route::is('management.categories.*') ? 'm-menu__item--active' : ''"
+            />
+            </x-menu-item>
+
+            <x-menu-item 
+                :permissions="['roles_view', 'users_view']"
                 text="{{ trans('general.menus.settings') }}" 
                 iconClass="flaticon-settings"
                 :activeClass="
