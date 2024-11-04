@@ -7,6 +7,15 @@ return [
             'view' => 'View',
         ],
     ],
+    'categories' => [
+        'title' => 'Categories',
+        'permissions' => [
+            'create' => 'Create',
+            'edit' => 'Edit',
+            'view' => 'View',
+            'delete' => 'Delete'
+        ],
+    ],
     'general' => [
         'title' => 'Setting General',
         'permissions' => [

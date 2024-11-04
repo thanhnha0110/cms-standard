@@ -12,7 +12,7 @@
 
     <div class="m-content">
         <div class="m-portlet m-portlet--mobile">
-            <x-table-head :permissions="['users_create']" />
+            <x-table-head :permissions="['categories_create']" />
 
             <div class="m-portlet__body">
                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -41,7 +41,7 @@
                                 </td>
                                 <td nowrap>
                                     <x-action-button 
-                                        :permissions="['users_edit']" 
+                                        :permissions="['categories_edit']" 
                                         icon="la la-edit" 
                                         title="{{ __('Edit') }}" 
                                         prefix="management.categories" 
@@ -49,7 +49,7 @@
                                         method="GET" 
                                     />
                                     <x-action-button 
-                                        :permissions="['users_delete']" 
+                                        :permissions="['categories_delete']" 
                                         icon="la la-trash" 
                                         title="{{ __('Delete') }}"
                                         prefix="management.categories" 

@@ -17,7 +17,7 @@
             />
 
             <x-menu-item 
-                :permissions="['roles_view', 'users_view']"
+                :permissions="['categories_view']"
                 text="{{ trans('general.menus.management') }}" 
                 iconClass="flaticon-piggy-bank"
                 :activeClass="
@@ -25,7 +25,7 @@
                     ? 'm-menu__item--expanded m-menu__item--open' : ''"
             >
                 <x-sub-menu-item 
-                :permissions="['roles_view']"
+                :permissions="['categories_view']"
                 link="{{ route('management.categories.index') }}" 
                 text="{{ trans('general.categories.title') }}" 
                 :activeClass="Route::is('management.categories.*') ? 'm-menu__item--active' : ''"
