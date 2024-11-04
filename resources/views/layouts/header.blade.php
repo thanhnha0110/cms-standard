@@ -221,7 +221,7 @@
                                                 </div>
                                                 <div class="m-card-user__details">
                                                     <span class="m-card-user__name m--font-weight-500">{{ logged_user()->getFullName() }}</span>
-                                                    <a href="" class="m-card-user__email m--font-weight-300 m-link">{{ logged_user()->email }}</a>
+                                                    <a href="" class="m-card-user__email m--font-weight-300 m-link">{{ logged_user()->email }} - {{ logged_user()->role->name }}</a>
                                                 </div>
                                             </div>
                                         </div>
