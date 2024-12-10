@@ -22,13 +22,5 @@ class SettingHelper
     {
         unset($data['_token']);
         return $data;
-        // $dbData = [];
-
-        // foreach ($data as $key => $value) {
-        //     $data = compact('key', 'value');
-        //     $dbData[] = $data;
-        // }
-        // return $dbData;
     }
-
 }

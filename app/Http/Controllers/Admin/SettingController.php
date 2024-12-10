@@ -58,6 +58,20 @@ class SettingController extends Controller
     }
 
     /**
+     * Update email setting
+     */
+    public function postEmail(Request $request)
+    {
+        try {
+            $params = SettingStore::prepareInsertData($request->all());
+            $this->settingRepository->updateOrCreateMany($params);
+            return redirect()->route('settings.email.get')->with('success', trans('notices.create_success_message'));
+        } catch (Exception $e) {
+            return redirect()->route('settings.email.get')->with('error', $e->getMessage());
+        }
+    }
+
+    /**
      * Get and paginate all users
      */
     public function getApi(Request $request)

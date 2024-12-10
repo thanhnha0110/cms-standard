@@ -64,6 +64,29 @@ return [
         ],
         'email' => [
             'title' => 'Email',
+            'form' => [
+                'settings' => 'Settings',
+                'mailer' => 'Mailer',
+                'smtp' => [
+                    'port' => 'Post',
+                    'host' => 'Host',
+                    'username' => 'Username',
+                    'password' => 'Password',
+                    'encryption' => 'Encryption',
+                ],
+                'ses' => [
+                    'key' => 'Key',
+                    'secret' => 'Secret',
+                    'region' => 'Region',
+                ],
+                'sender_name' => 'Sender name',
+                'sender_email' => 'Sender email',
+                'send_test_mail_btn' => 'Send test mail',
+                'send_test_mail_title' => 'Send a test mail',
+                'send_test_mail_description' => 'To send test mail, please make sure you are updated configuration to send mail!',
+                'send_test_mail_placeholder' => 'Enter the email which you want to send test mail.',
+                'templates' => 'Templates',
+            ],
         ],
         'api' => [
             'title' => 'API Settings',
