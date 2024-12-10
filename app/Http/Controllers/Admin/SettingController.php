@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Helpers\Facades\SettingStore;
 use App\Http\Controllers\Controller;
+use App\Repositories\EmailTemplateRepository;
 use App\Repositories\SettingRepository;
 use Exception;
 use Illuminate\Http\Request;
@@ -16,12 +17,19 @@ class SettingController extends Controller
     private $settingRepository;
 
     /**
+     * @var EmailTemplateRepository
+     */
+    private $emailTemplateRepository;
+
+    /**
      * SettingController constructor.
      */
     public function __construct(
         SettingRepository $settingRepository,
+        EmailTemplateRepository $emailTemplateRepository,
     ) {
         $this->settingRepository = $settingRepository;
+        $this->emailTemplateRepository = $emailTemplateRepository;
     }
 
 
@@ -54,7 +62,8 @@ class SettingController extends Controller
     public function getEmail(Request $request)
     {
         $title = trans('general.settings.email.title');
-        return view('settings.email', compact('title'));
+        $emailTemplates = $this->emailTemplateRepository->all();
+        return view('settings.email', compact('title', 'emailTemplates'));
     }
 
     /**
@@ -69,6 +78,16 @@ class SettingController extends Controller
         } catch (Exception $e) {
             return redirect()->route('settings.email.get')->with('error', $e->getMessage());
         }
+    }
+
+    /**
+     * Get and paginate all users
+     */
+    public function editEmailTemplate(Request $request)
+    {
+        $title = trans('general.settings.email.title');
+        $emailTemplates = $this->emailTemplateRepository->all();
+        return view('settings.email', compact('title', 'emailTemplates'));
     }
 
     /**

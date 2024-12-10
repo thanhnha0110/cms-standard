@@ -41,19 +41,19 @@
                     ? 'm-menu__item--expanded m-menu__item--open' : ''"
             >
                 <x-sub-menu-item 
-                    :permissions="['roles_view']"
+                    :permissions="['general_view']"
                     link="{{ route('settings.general.get') }}" 
                     text="{{ trans('general.settings.general.title') }}" 
                     :activeClass="Route::is('settings.general.*') ? 'm-menu__item--active' : ''"
                 />
                 <x-sub-menu-item 
-                    :permissions="['roles_view']"
+                    :permissions="['email_view']"
                     link="{{ route('settings.email.get') }}" 
                     text="{{ trans('general.settings.email.title') }}" 
                     :activeClass="Route::is('settings.email.*') ? 'm-menu__item--active' : ''"
                 />
                 <x-sub-menu-item 
-                    :permissions="['roles_view']"
+                    :permissions="['api_view']"
                     link="{{ route('settings.api.get') }}" 
                     text="{{ trans('general.settings.api.title') }}" 
                     :activeClass="Route::is('settings.api.*') ? 'm-menu__item--active' : ''"

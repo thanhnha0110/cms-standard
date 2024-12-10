@@ -135,14 +135,39 @@
                         />
                     </div>
                     <div class="tab-pane" id="templates" role="tabpanel">
-                        <x-input 
-                            label="{{ trans('general.settings.general.form.admin_title') }}" 
-                            type="text" 
-                            id="admin_title" 
-                            name="admin_title"
-                            value="{{ setting('admin_title', '') }}" 
-                            error="{{ $errors->first('admin_title') }}" 
-                        />
+                        <div class="dataTables_wrapper dt-bootstrap4 no-footer">
+        
+                            <!--begin: Datatable -->
+                            <table class="table table-striped- table-bordered table-hover table-checkable" >
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Description</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($emailTemplates as $item)
+                                    <tr>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->title }}</td>
+                                        <td>{{ $item->description }}</td>
+                                        <td nowrap>
+                                            <x-action-button 
+                                                :permissions="['email_edit']" 
+                                                icon="la la-edit" 
+                                                title="{{ __('Edit') }}" 
+                                                prefix="settings.email.templates" 
+                                                id="{{ $item->id }}" 
+                                                method="GET" 
+                                            />
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </x-form>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\EmailTemplateController;
 use App\Http\Controllers\Admin\SettingController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +30,13 @@ Route::group([
     ], function () {
         Route::get('', [SettingController::class, 'getEmail'])->name('get');
         Route::post('', [SettingController::class, 'postEmail'])->name('post');
+        Route::group([
+            'prefix' => 'templates',
+            'as' => 'templates.'
+        ], function () {
+            Route::get('{id}/edit', [EmailTemplateController::class, 'edit'])->name('edit');
+            Route::put('{id}/update', [EmailTemplateController::class, 'update'])->name('update');
+        });
     });
 
     Route::group([
