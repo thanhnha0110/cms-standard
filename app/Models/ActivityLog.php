@@ -40,7 +40,7 @@ class ActivityLog extends Model
     {
         $default = 'ID: ' . $this->reference_id;
         if (isset($this->reference)) {
-            return $this->reference->name ?? $this->reference->getFullName() ?? $this->reference->title ?? $default;
+            return $this->reference->name ?? $this->reference->title ?? $this->reference->getFullName() ?? $default;
         }
         return $default;
     } 
