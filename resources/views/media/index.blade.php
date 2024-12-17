@@ -188,5 +188,13 @@
             font-weight: 600;
             margin: 0;
         }
+
+        .rv-media-description .rv-media-name span {
+            display: block;
+            word-wrap: break-word;
+            word-break: break-all;
+            white-space: normal;
+        }
+
     </style>
 @endsection
