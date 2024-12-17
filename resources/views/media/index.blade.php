@@ -42,32 +42,42 @@
                     <div class="col-8">
                         <div class="m-image__list">
                             @foreach ($items as $item)
-                            <div class="m-image__item">
-                                <a href="#">
-                                    <img src="{{ $item->url }}">
-                                </a>
-                            </div>
+                            <a onclick="showImageInfo('{{ $item->name }}', '{{ $item->url }}', '{{ format_datetime($item->created_at) }}', '{{ $item->alt }}')">
+                                <div class="m-image__item">
+                                    <img src="{{ $item->url }}" alt="{{ $item->alt }}">
+                                </div>
+                            </a>
                             @endforeach
                         </div>
                     </div>
                     <div class="col-4">
-                        <div class="m-dropzone dropzone dz-clickable" action="inc/api/dropzone/upload.php" id="m-dropzone-one">
+                        <div class="m-dropzone rv-media-thumbnail">
                             <div class="m-dropzone__msg dz-message needsclick">
-                                <h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>
-                                <span class="m-dropzone__msg-desc">This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.</span>
+                                <img src="{{ asset('assets/app/media/img/default.jpg') }}" >
                             </div>
                         </div>
-                            <x-input 
-                                label="{{ trans('general.categories.form.name') }}" 
-                                type="text" 
-                                id="name" 
-                                name="name"
-                                value="{{ old('name') }}" 
-                                error=""
-                            />
+                        <div class="rv-media-description">
+                            <div class="rv-media-name">
+                                <p for="rv-media-name">{{ __('Name') }}</p>
+                                <span id="rv-media-name">_</span>
+                            </div>
+                            <div class="rv-media-name">
+                                <p for="rv-media-url">{{ __('Full URL') }}</p>
+                                <span id="rv-media-url">_</span>
+                            </div>
+                            <div class="rv-media-name">
+                                <p for="rv-media-created">{{ __('Uploaded at') }}</p>
+                                <span id="rv-media-created">_</span>
+                            </div>
+                            <div class="rv-media-name">
+                                <p for="rv-media-alt">{{ __('Alt text') }}</p>
+                                <span id="rv-media-alt">_</span>
+                            </div>
+                        </div>
+                            
                     </div>
                 </div>
-                <div>load more</div>
+                <div>Load more</div>
 
             </div>
         </div>
@@ -128,6 +138,24 @@
                 }
             });
         });
+
+
+        // Review image
+        function showImageInfo(name, url, created, alt) {
+            const previewImg = document.querySelector('.m-dropzone__msg img');
+            const nameSpan = document.querySelector('#rv-media-name');
+            const urlSpan = document.querySelector('#rv-media-url');
+            const createdSpan = document.querySelector('#rv-media-created');
+            const altSpan = document.querySelector('#rv-media-alt');
+
+            // Show review
+            previewImg.setAttribute('src', url);
+            nameSpan.textContent = name;
+            urlSpan.textContent = url;
+            createdSpan.textContent = created;
+            altSpan.textContent = alt;
+        }
+
     </script>
 @endsection
 
@@ -147,6 +175,18 @@
             line-height: 150px;
             border: 1px solid #ccc;
             border-radius: 5px;
+        }
+        .rv-media-description {
+            padding: 10px;
+            position: relative;
+        }
+        .rv-media-description .rv-media-name {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .rv-media-description .rv-media-name>p {
+            font-weight: 600;
+            margin: 0;
         }
     </style>
 @endsection

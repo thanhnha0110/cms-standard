@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Setting;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
 if (!function_exists('logged_user')) {
@@ -29,5 +30,13 @@ if (!function_exists('setting')) {
     {
         $item = Setting::where('key', $key)->first();
         return $item ? $item->value : $default ?? '';
+    }
+}
+
+if (!function_exists('format_datetime')) {
+    function format_datetime($dateTime)
+    {
+        $newDate = Carbon::parse($dateTime);
+        return $newDate->format('Y-m-d H:i:s');
     }
 }
