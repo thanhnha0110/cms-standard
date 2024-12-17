@@ -43,15 +43,9 @@ class MediaController extends Controller
     public function index(Request $request)
     {
         $title = $this->title;
-        $page = $request->page;
-        $size = $request->size;
-        $search = $request->search;
         $items = $this->mediaFileRepository->serverPaginationFilteringFor($request);
         return view('media.index', compact(
             'title',
-            'page',
-            'size',
-            'search',
             'items',
         ));
     }
@@ -71,5 +65,23 @@ class MediaController extends Controller
         } catch (Exception $e) {
             return $this->error($e->getMessage());
         }
+    }
+
+    public function getImages(Request $request)
+    {
+        $images = $this->mediaFileRepository->serverPaginationFilteringFor($request);
+        $formattedImages = $images->map(function ($image) {
+            return [
+                'name' => $image->name,
+                'url' => $image->url,
+                'created_at' => format_datetime($image->created_at),
+                'alt' => $image->alt,
+            ];
+        });
+
+        return $this->success([
+            'items' => $formattedImages,
+            'next_page' => $images->currentPage() < $images->lastPage() ? $images->currentPage() + 1 : null,
+        ]);
     }
 }

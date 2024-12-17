@@ -40,7 +40,7 @@
             <div class="m-portlet__body">
                 <div class="row">
                     <div class="col-8">
-                        <div class="m-image__list">
+                        <div class="m-image__list" id="image-list">
                             @foreach ($items as $item)
                             <a onclick="showImageInfo('{{ $item->name }}', '{{ $item->url }}', '{{ format_datetime($item->created_at) }}', '{{ $item->alt }}')">
                                 <div class="m-image__item">
@@ -77,7 +77,9 @@
                             
                     </div>
                 </div>
-                <div>Load more</div>
+                <div>
+                    <button id="load-more" class="btn btn-default" data-page="2" onclick="loadMore(this)">{{ __('Load more') }}</button>
+                </div>
 
             </div>
         </div>
@@ -90,8 +92,8 @@
 @section('scripts')
     <script src="{{ asset('assets/vendors/custom/datatables/datatables.bundle.js') }}" type="text/javascript"></script>
 
-    {{-- upload image --}}
     <script>
+        // -------------------Upload image----------------------------
         document.getElementById('imageUpload').addEventListener('change', function (event) {
             const file = event.target.files[0];
             if (file) {
@@ -106,7 +108,6 @@
                 reader.readAsDataURL(file);
             }
         });
-
 
         $('#imageUpload').on('change', function (event) {
             const formData = new FormData();
@@ -140,7 +141,7 @@
         });
 
 
-        // Review image
+        // -------------------Review image----------------------------
         function showImageInfo(name, url, created, alt) {
             const previewImg = document.querySelector('.m-dropzone__msg img');
             const nameSpan = document.querySelector('#rv-media-name');
@@ -154,6 +155,49 @@
             urlSpan.textContent = url;
             createdSpan.textContent = created;
             altSpan.textContent = alt;
+        }
+
+
+        // -------------------Load more images------------------------
+        function loadMore(btn) {
+            const button = $(btn);
+            const page = button.data('page');
+
+            $.ajax({
+                url: '{{ route('media.load-more') }}',
+                type: 'GET',
+                data: { page: page },
+                beforeSend: function() {
+                    button.text('Loading...');
+                    button.prop('disabled', true);
+                },
+                success: function(response) {
+                    // Append new images to the list
+                    response.data.items.forEach(image => {
+                        $('#image-list').append(`
+                            <a onclick="showImageInfo('${image.name}', '${image.url}', '${image.created_at}', '${image.alt}')">
+                                <div class="m-image__item">
+                                    <img src="${image.url}" alt="${image.alt}">
+                                </div>
+                            </a>
+                        `);
+                    });
+
+                    // Update button state
+                    if (response.data.next_page) {
+                        button.data('page', response.data.next_page);
+                        button.text('Load More');
+                        button.prop('disabled', false);
+                    } else {
+                        button.remove();
+                    }
+                },
+                error: function() {
+                    button.text('Load More');
+                    button.prop('disabled', false);
+                    alert('Failed to load more images.');
+                }
+            });
         }
 
     </script>

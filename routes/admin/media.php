@@ -15,4 +15,6 @@ Route::group([
     'as' => 'media.'
 ], function () {
     Route::resource('/', MediaController::class)->parameters(['' => 'media']);
+
+    Route::get('/images/load-more', [MediaController::class, 'getImages'])->name('load-more');
 });
