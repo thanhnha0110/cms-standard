@@ -17,4 +17,6 @@ return [
     'sign_in_success_message' => 'Sign in successfully',
     'sign_in_fail_message' => 'Invalid Email or Password',
     'sign_out_success_message' => 'Sign out successfully',
+    'upload_image_success_message' => 'Image uploaded successfully',
+    'upload_image_fail_message' => 'Failed to upload image'
 ];

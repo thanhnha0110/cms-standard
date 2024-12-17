@@ -5,11 +5,13 @@ namespace App\Providers;
 use App\Models\ActivityLog;
 use App\Models\Category;
 use App\Models\EmailTemplate;
+use App\Models\MediaFile;
 use App\Models\Setting;
 use App\Models\User;
 use App\Repositories\Eloquent\EloquentCategoryRepository;
 use App\Repositories\Eloquent\EloquentEmailTemplateRepository;
 use App\Repositories\Eloquent\EloquentLogRepository;
+use App\Repositories\Eloquent\EloquentMediaFileRepository;
 use App\Repositories\Eloquent\EloquentPermissionRepository;
 use App\Repositories\Eloquent\EloquentRoleRepository;
 use App\Repositories\Eloquent\EloquentSettingRepository;
@@ -68,6 +70,10 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\EmailTemplateRepository', function () {
             return new EloquentEmailTemplateRepository(new EmailTemplate());
+        });
+
+        $this->app->bind('App\Repositories\MediaFileRepository', function () {
+            return new EloquentMediaFileRepository(new MediaFile());
         });
     }
 }

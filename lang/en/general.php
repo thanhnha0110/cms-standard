@@ -18,6 +18,7 @@ return [
         'settings' => 'Settings',
         'platform_administration' => 'Platform Administrator',
         'management' => 'Management',
+        'media' => 'Media',
     ],
     'users' => [
         'title' => 'Users',
@@ -100,6 +101,17 @@ return [
             'name' => 'Name',
             'icon' => 'Icon',
             'type' => 'Type',
+        ],
+    ],
+    'media' => [
+        'title' => 'Media',
+        'form' => [
+            'upload' => 'Upload',
+            'create_folder' => 'Upload',
+            'name' => 'Name',
+            'full_url' => 'Full URL',
+            'move_to_trash' => 'Move to trash',
+            'rename' => 'Rename',
         ],
     ],
 ];

@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helpers\FileHelper;
 use App\Helpers\SettingHelper;
 use App\Models\User;
 use App\Observers\UserObserver;
@@ -17,6 +18,10 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->singleton('setting', function () {
             return new SettingHelper();
+        });
+
+        $this->app->singleton('file', function () {
+            return new FileHelper();
         });
     }
 

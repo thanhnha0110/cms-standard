@@ -32,6 +32,16 @@
             />
             </x-menu-item>
 
+            <x-menu-single 
+                :permissions="['media_view']"
+                text="{{ trans('general.menus.media') }}"
+                link="{{ route('media.index') }}"
+                iconClass="flaticon-photo-camera"
+                :activeClass="
+                    Route::is('media.*')
+                    ? 'm-menu__item--expanded' : ''"
+            />
+
             <x-menu-item 
                 :permissions="['roles_view', 'users_view']"
                 text="{{ trans('general.menus.settings') }}" 

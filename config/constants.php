@@ -11,3 +11,7 @@ if (!defined('CATEGORY_MODULE_SCREEN_NAME')) {
 if (!defined('EMAIL_TEMPLATE_MODULE_SCREEN_NAME')) {
     define('EMAIL_TEMPLATE_MODULE_SCREEN_NAME', 'email template');
 }
+
+if (!defined('MEDIA_FILE_MODULE_SCREEN_NAME')) {
+    define('MEDIA_FILE_MODULE_SCREEN_NAME', 'media file');
+}

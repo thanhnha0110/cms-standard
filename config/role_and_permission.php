@@ -16,6 +16,15 @@ return [
             'delete' => 'Delete'
         ],
     ],
+    'media' => [
+        'title' => 'Media',
+        'permissions' => [
+            'create' => 'Create',
+            'edit' => 'Edit',
+            'view' => 'View',
+            'delete' => 'Delete'
+        ],
+    ],
     'general' => [
         'title' => 'Setting General',
         'permissions' => [
