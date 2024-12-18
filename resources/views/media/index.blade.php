@@ -24,7 +24,6 @@
                         @can('media_create')
                         <li class="m-portlet__nav-item">
                             <input type="file" id="imageUpload" name="image" accept="image/*" style="display: none;">
-
                             <a href="#" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air" onclick="document.getElementById('imageUpload').click()">
                                 <span>
                                     <i class="la la-cloud-upload"></i>
@@ -43,8 +42,8 @@
                         <div class="m-image__list" id="image-list">
                             @foreach ($items as $item)
                             <a onclick="showImageInfo('{{ $item->name }}', '{{ $item->url }}', '{{ format_datetime($item->created_at) }}', '{{ $item->alt }}')">
-                                <div class="m-image__item">
-                                    <img src="{{ $item->url }}" alt="{{ $item->alt }}">
+                                <div class="m-image__item" data-id="{{ $item->id }}">
+                                    <img src="{{ $item->url }}" alt="{{ $item->alt }}" class="m-image__item" data-id="{{ $item->id }}">
                                 </div>
                             </a>
                             @endforeach
@@ -81,6 +80,13 @@
                     <button id="load-more" class="btn btn-default" data-page="2" onclick="loadMore(this)">{{ __('Load more') }}</button>
                 </div>
 
+                <!-- Menu click right -->
+                <div id="context-menu" class="hidden">
+                    <ul>
+                        @can('media_edit')<li onclick="editImage()">{{ __('Edit') }}</li>@endcan
+                        @can('media_delete')<li onclick="deleteImage()">{{ __('Delete') }}</li>@endcan
+                    </ul>
+                </div>
             </div>
         </div>
         <!-- END EXAMPLE TABLE PORTLET-->
@@ -176,8 +182,8 @@
                     response.data.items.forEach(image => {
                         $('#image-list').append(`
                             <a onclick="showImageInfo('${image.name}', '${image.url}', '${image.created_at}', '${image.alt}')">
-                                <div class="m-image__item">
-                                    <img src="${image.url}" alt="${image.alt}">
+                                <div class="m-image__item" class="m-image__item" data-id="${image.id}">
+                                    <img src="${image.url}" alt="${image.alt}" class="m-image__item" data-id="${image.id}">
                                 </div>
                             </a>
                         `);
@@ -198,6 +204,85 @@
                     alert('Failed to load more images.');
                 }
             });
+        }
+
+
+        // -------------------Show menu click right-------------------
+        let currentImageId = null;
+        document.addEventListener('DOMContentLoaded', function () {
+            const gallery = document.getElementById('image-list');
+            const contextMenu = document.getElementById('context-menu');
+
+
+            // listen event
+            gallery.addEventListener('contextmenu', function (event) {
+                event.preventDefault();
+
+                // check click image
+                if (event.target.classList.contains('m-image__item')) {
+                    currentImageId = event.target.getAttribute('data-id');
+                    showContextMenu(event, contextMenu);
+                }
+            });
+
+            // Hide menu when click outside
+            document.addEventListener('click', function () {
+                hideContextMenu(contextMenu);
+            });
+
+            // reduce close menu when click
+            contextMenu.addEventListener('click', function (event) {
+                event.stopPropagation();
+            });
+        });
+
+        // show menu in mouse position
+        function showContextMenu(event, menu) {
+            menu.style.display = 'block';
+            menu.style.left = `${event.pageX}px`;
+            menu.style.top = `${event.pageY}px`;
+
+        }
+
+        // hide menu
+        function hideContextMenu(menu) {
+            menu.style.display = 'none';
+        }
+
+        // -------------------Edit image------------------
+        function editImage() {
+            alert(`Edit image with ID: ${currentImageId}`);
+            hideContextMenu(document.getElementById('context-menu'));
+        }
+
+        // -------------------Delete image------------------
+        function deleteImage() {
+            if (confirm('Are you sure you want to delete this item?')) {
+                fetch(`/admin/media/${currentImageId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                        'Content-Type': 'application/json',
+                    },
+                })
+                .then(response => {
+                    console.log(response)
+                    if (response.ok) {
+                        toastr.success(response.data, 'Success')
+                        document.querySelector(`[data-id="${currentImageId}"]`).remove();
+
+                        setTimeout(() => {
+                            location.reload();
+                        }, 1500);
+                    } else {
+                        toastr.error(response.statusText, 'Error')
+                    }
+                })
+                .catch(error => {
+                    toastr.error(error.message, 'Error')
+                });
+            }
+            hideContextMenu(document.getElementById('context-menu'));
         }
 
     </script>
@@ -240,5 +325,33 @@
             white-space: normal;
         }
 
+
+
+        /* Format menu */
+        #context-menu {
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        #context-menu ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        #context-menu li {
+            padding: 8px 12px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        #context-menu li:hover {
+            background-color: #f0f0f0;
+        }
     </style>
 @endsection

@@ -22,4 +22,13 @@ class MediaFileService extends BaseService
 
         return FileHelper::uploadSingle($file);
     }
+
+    public function destroy($file): ?bool
+    {
+        if (!$file) {
+            throw new Exception(trans('errors.item_not_found'));
+        }
+
+        return FileHelper::delete($file->url);
+    }
 }

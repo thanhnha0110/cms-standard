@@ -130,27 +130,16 @@ class FileHelper
      */
     public function delete($path): ?bool
     {
-        if ($path) {
-            $awsUrl = env('AWS_URL');
-            
-            if (is_array($path)) {
-                foreach ($path as $singlePath) {
-                    $this->delete($singlePath);
-                }
-                return true;
-            }
+        if (!$path) return false;
 
-            $path = trim($path, '/');
-            if (Str::startsWith($path, $awsUrl)) {
-                $path = str_replace($awsUrl, '', $path);
-                return Storage::disk('s3')->delete($path);
+        if (is_array($path)) {
+            foreach ($path as $singlePath) {
+                $this->delete($singlePath);
             }
-
-            // default delete from public
-            return Storage::disk('public')->delete($path);
+            return true;
         }
-        
-        return false;
+
+        return Str::startsWith($path, env('AWS_URL')) ? $this->deleteFileFromS3($path) : $this->deleteFileFromPublic($path);
     }
 
 
@@ -166,4 +155,45 @@ class FileHelper
         return round($bytes / (pow(1024, $exp)), $precision) . ' ' . $unit[$exp];
     }
 
+
+    /**
+     * Delete file from S3
+     *
+     * @param string $fileUrl
+     * @return boolean
+     */
+    public function deleteFileFromS3($fileUrl): bool
+    {
+        $s3BaseUrl = config('filesystems.disks.s3.url');
+        $filePath = str_replace($s3BaseUrl, '', $fileUrl);
+        $filePath = ltrim($filePath, '/');
+
+        if (Storage::disk('s3')->exists($filePath)) {
+            Storage::disk('s3')->delete($filePath);
+            return true;
+        }
+
+        return false;
+    }
+
+
+    /**
+     * Delete file from public storage
+     *
+     * @param string $fileUrl
+     * @return boolean
+     */
+    public function deleteFileFromPublic($fileUrl): bool
+    {
+        $siteUrl = config('app.url') . '/storage';
+        $path = str_replace($siteUrl, '', $fileUrl);
+        $path = ltrim($path, '/');
+
+        if (Storage::disk('public')->exists($path)) {
+            Storage::disk('public')->delete($path);
+            return true;
+        }
+
+        return false;
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Events\CreatedContentEvent;
+use App\Events\DeletedContentEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\MediaRequest;
 use App\Repositories\MediaFileRepository;
@@ -67,6 +68,12 @@ class MediaController extends Controller
         }
     }
 
+    /**
+     * Get images when load more
+     *
+     * @param Request $request
+     * @return void
+     */
     public function getImages(Request $request)
     {
         $images = $this->mediaFileRepository->serverPaginationFilteringFor($request);
@@ -83,5 +90,23 @@ class MediaController extends Controller
             'items' => $formattedImages,
             'next_page' => $images->currentPage() < $images->lastPage() ? $images->currentPage() + 1 : null,
         ]);
+    }
+
+    /**
+     * Destroy
+     */
+    public function destroy(Request $request, $id)
+    {
+        try {
+            $item = $this->mediaFileRepository->findOrFail($id);
+            $this->mediaFileService->destroy($item);
+            $item->delete();
+
+            event(new DeletedContentEvent(MEDIA_FILE_MODULE_SCREEN_NAME, $request, $item));
+
+            return $this->success(trans('notices.delete_success_message'));
+        } catch (Exception $e) {
+            return $this->error($e->getMessage());
+        }
     }
 }
