@@ -27,12 +27,116 @@
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active show" id="general_information" role="tabpanel">
+                        <x-input 
+                            label="{{ trans('general.settings.general.form.shop_name') }}" 
+                            type="text" 
+                            id="shop_name" 
+                            name="shop_name"
+                            value="{{ setting('shop_name', '') }}" 
+                            error="{{ $errors->first('shop_name') }}" 
+                        />
+                        <x-input 
+                            label="{{ trans('general.settings.general.form.company_name') }}" 
+                            type="text" 
+                            id="company_name" 
+                            name="company_name"
+                            value="{{ setting('company_name', '') }}" 
+                            error="{{ $errors->first('company_name') }}" 
+                        />
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <x-input 
+                                    label="{{ trans('general.settings.general.form.company_phone') }}" 
+                                    type="text" 
+                                    id="company_phone" 
+                                    name="company_phone"
+                                    value="{{ setting('company_phone', '') }}" 
+                                    error="{{ $errors->first('company_phone') }}" 
+                                />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <x-input 
+                                    label="{{ trans('general.settings.general.form.company_email') }}" 
+                                    type="text" 
+                                    id="company_email" 
+                                    name="company_email"
+                                    value="{{ setting('company_email', '') }}" 
+                                    error="{{ $errors->first('company_email') }}" 
+                                />
+                            </div>
+                        </div>
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <x-input 
+                                    label="{{ trans('general.settings.general.form.company_tax') }}" 
+                                    type="text" 
+                                    id="company_tax" 
+                                    name="company_tax"
+                                    value="{{ setting('company_tax', '') }}" 
+                                    error="{{ $errors->first('company_tax') }}" 
+                                />
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6">
+                                <x-input 
+                                    label="{{ trans('general.settings.general.form.company_fax') }}" 
+                                    type="text" 
+                                    id="company_fax" 
+                                    name="company_fax"
+                                    value="{{ setting('company_fax', '') }}" 
+                                    error="{{ $errors->first('company_fax') }}" 
+                                />
+                            </div>
+                        </div>
+
+                        <x-input 
+                            label="{{ trans('general.settings.general.form.company_address') }}" 
+                            type="text" 
+                            id="company_address" 
+                            name="company_address"
+                            value="{{ setting('company_address', '') }}" 
+                            error="{{ $errors->first('company_address') }}" 
+                        />
+
+                        <div class="form-group m-form__group row">
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <x-select 
+                                    label="{{ trans('general.settings.general.form.company_country') }}"
+                                    id="company_country" 
+                                    name="company_country" 
+                                    value="{{ setting('company_country', 'UTC') }}"
+                                    :options="get_countries()"
+                                    error="{{ $errors->first('company_country') }}"
+                                />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <x-input 
+                                    label="{{ trans('general.settings.general.form.company_state') }}" 
+                                    type="text" 
+                                    id="company_state" 
+                                    name="company_state"
+                                    value="{{ setting('company_state', '') }}" 
+                                    error="{{ $errors->first('company_state') }}" 
+                                />
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <x-input 
+                                    label="{{ trans('general.settings.general.form.company_city') }}" 
+                                    type="text" 
+                                    id="company_city" 
+                                    name="company_city"
+                                    value="{{ setting('company_city', '') }}" 
+                                    error="{{ $errors->first('company_city') }}" 
+                                />
+                            </div>
+                        </div>
                         <x-select 
                             label="{{ trans('general.settings.general.form.timezone') }}"
                             id="timezone" 
                             name="timezone" 
                             value="{{ setting('timezone', 'UTC') }}"
-                            :options="DateTimeZone::listIdentifiers()"
+                            :options="get_timezones()"
                             error="{{ $errors->first('timezone') }}"
                         />
                         <x-select 

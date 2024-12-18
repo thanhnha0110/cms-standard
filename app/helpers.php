@@ -1,6 +1,8 @@
 <?php
 
+use App\Models\Country;
 use App\Models\Setting;
+use App\Models\Timezone;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 
@@ -38,5 +40,19 @@ if (!function_exists('format_datetime')) {
     {
         $newDate = Carbon::parse($dateTime);
         return $newDate->format('Y-m-d H:i:s');
+    }
+}
+
+if (!function_exists('get_timezones')) {
+    function get_timezones()
+    {
+        return Timezone::pluck('name', 'zone')->toArray();
+    }
+}
+
+if (!function_exists('get_countries')) {
+    function get_countries()
+    {
+        return Country::pluck('name', 'code')->toArray();
     }
 }
