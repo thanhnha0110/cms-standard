@@ -7,8 +7,8 @@
             <div class="m-stack__item m-brand  m-brand--skin-dark ">
                 <div class="m-stack m-stack--ver m-stack--general">
                     <div class="m-stack__item m-stack__item--middle m-brand__logo">
-                        <a href="index.html" class="m-brand__logo-wrapper">
-                            <img alt="" src="{{ asset('assets/demo/default/media/img/logo/logo_default_dark.png') }}" />
+                        <a href="{{ route('dashboard.index') }}" class="m-brand__logo-wrapper">
+                            <img alt="" src="{{ setting('logo', asset('assets/demo/default/media/img/logo/logo_default_dark.png')) }}" />
                         </a>
                     </div>
                     <div class="m-stack__item m-stack__item--middle m-brand__tools">

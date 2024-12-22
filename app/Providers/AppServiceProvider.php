@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use App\Helpers\FileHelper;
 use App\Helpers\SettingHelper;
+use App\Models\Setting;
 use App\Models\User;
+use App\Observers\SettingObserver;
 use App\Observers\UserObserver;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -32,5 +34,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useTailwind();
         User::observe(UserObserver::class);
+        Setting::observe(SettingObserver::class);
     }
 }

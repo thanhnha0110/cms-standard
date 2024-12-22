@@ -67,3 +67,17 @@ if (!function_exists('get_media_files')) {
         return MediaFile::orderBy('id', 'desc')->paginate(10);
     }
 }
+
+if (!function_exists('clear_caches')) {
+    function clear_caches()
+    {
+        Cache::flush();
+    }
+}
+
+if (!function_exists('clear_cache')) {
+    function clear_cache($key)
+    {
+        Cache::forget($key);
+    }
+}
