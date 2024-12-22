@@ -16,6 +16,15 @@ return [
             'delete' => 'Delete'
         ],
     ],
+    'tags' => [
+        'title' => 'Tags',
+        'permissions' => [
+            'create' => 'Create',
+            'edit' => 'Edit',
+            'view' => 'View',
+            'delete' => 'Delete'
+        ],
+    ],
     'media' => [
         'title' => 'Media',
         'permissions' => [

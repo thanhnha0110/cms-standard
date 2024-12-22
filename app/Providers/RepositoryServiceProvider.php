@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\EmailTemplate;
 use App\Models\MediaFile;
 use App\Models\Setting;
+use App\Models\Tag;
 use App\Models\User;
 use App\Repositories\Eloquent\EloquentCategoryRepository;
 use App\Repositories\Eloquent\EloquentEmailTemplateRepository;
@@ -15,6 +16,7 @@ use App\Repositories\Eloquent\EloquentMediaFileRepository;
 use App\Repositories\Eloquent\EloquentPermissionRepository;
 use App\Repositories\Eloquent\EloquentRoleRepository;
 use App\Repositories\Eloquent\EloquentSettingRepository;
+use App\Repositories\Eloquent\EloquentTagRepository;
 use App\Repositories\Eloquent\EloquentUserRepository;
 use Illuminate\Support\ServiceProvider;
 use Spatie\Permission\Models\Permission;
@@ -74,6 +76,10 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\MediaFileRepository', function () {
             return new EloquentMediaFileRepository(new MediaFile());
+        });
+
+        $this->app->bind('App\Repositories\TagRepository', function () {
+            return new EloquentTagRepository(new Tag());
         });
     }
 }

@@ -19,6 +19,7 @@ return [
         'platform_administration' => 'Platform Administrator',
         'management' => 'Management',
         'media' => 'Media',
+        'posts' => 'Posts',
     ],
     'users' => [
         'title' => 'Users',
@@ -116,6 +117,18 @@ return [
             'full_url' => 'Full URL',
             'move_to_trash' => 'Move to trash',
             'rename' => 'Rename',
+        ],
+    ],
+    'posts' => [
+        'title' => 'Posts',
+        'form' => [
+            'name' => 'Name',
+        ],
+    ],
+    'tags' => [
+        'title' => 'Tags',
+        'form' => [
+            'name' => 'Name',
         ],
     ],
 ];

@@ -15,3 +15,7 @@ if (!defined('EMAIL_TEMPLATE_MODULE_SCREEN_NAME')) {
 if (!defined('MEDIA_FILE_MODULE_SCREEN_NAME')) {
     define('MEDIA_FILE_MODULE_SCREEN_NAME', 'media file');
 }
+
+if (!defined('TAG_MODULE_SCREEN_NAME')) {
+    define('TAG_MODULE_SCREEN_NAME', 'tag');
+}
