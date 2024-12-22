@@ -17,19 +17,25 @@
             />
 
             <x-menu-item 
-                :permissions="['categories_view']"
+                :permissions="['categories_view', 'tags_view']"
                 text="{{ trans('general.menus.management') }}" 
-                iconClass="flaticon-piggy-bank"
+                iconClass="flaticon-folder-1"
                 :activeClass="
                     Route::is('management.*')
                     ? 'm-menu__item--expanded m-menu__item--open' : ''"
             >
                 <x-sub-menu-item 
-                :permissions="['categories_view']"
-                link="{{ route('management.categories.index') }}" 
-                text="{{ trans('general.categories.title') }}" 
-                :activeClass="Route::is('management.categories.*') ? 'm-menu__item--active' : ''"
-            />
+                    :permissions="['categories_view']"
+                    link="{{ route('management.categories.index') }}" 
+                    text="{{ trans('general.categories.title') }}" 
+                    :activeClass="Route::is('management.categories.*') ? 'm-menu__item--active' : ''"
+                />
+                <x-sub-menu-item 
+                    :permissions="['tags_view']"
+                    link="{{ route('management.tags.index') }}" 
+                    text="{{ trans('general.tags.title') }}" 
+                    :activeClass="Route::is('management.tags.*') ? 'm-menu__item--active' : ''"
+                />
             </x-menu-item>
 
             <x-menu-single 
