@@ -1,6 +1,6 @@
 <head>
     <meta charset="utf-8" />
-    <title> {{ $title }} | Dashboard</title>
+    <title> {{ $title }} | {{ setting('admin_title', 'Admin') }} </title>
     <meta name="description" content="Latest updates and statistic charts">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
 
@@ -24,7 +24,7 @@
     <!--end::Global Theme Styles -->
 
     <!--end::Page Vendors Styles -->
-    <link rel="shortcut icon" href="{{ asset('assets/demo/default/media/img/logo/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ setting('favicon', asset('assets/demo/default/media/img/logo/favicon.ico')) }}" />
 
     <script src="https://cdn.tailwindcss.com"></script>
 

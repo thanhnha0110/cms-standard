@@ -160,24 +160,30 @@
                         />
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-12 col-sm-12">{{ trans('general.settings.general.form.admin_logo') }}</label>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="m-dropzone dropzone dz-clickable" action="inc/api/dropzone/upload.php" id="m-dropzone-one">
-                                    <div class="m-dropzone__msg dz-message needsclick">
-                                        <h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>
-                                        <span class="m-dropzone__msg-desc">This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.</span>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="m-dropzone rv-media-thumbnail">
+                                    <div class="m-dropzone__msg">
+                                        <img src="{{ setting('logo', asset('assets/app/media/img/default.jpg')) }}" class="rv-logo">
+                                        <input type="text" class="form-control m-input" name="logo" value="{{ setting('logo', '') }}" placeholder="Logo URL" readonly>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#gallery-modal" data-input="logo">{{ __('Choose image') }}</button>
                             </div>
                         </div>
                         <div class="form-group m-form__group row">
                             <label class="col-form-label col-lg-12 col-sm-12">{{ trans('general.settings.general.form.admin_favicon') }}</label>
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="m-dropzone dropzone dz-clickable" action="inc/api/dropzone/upload.php" id="m-dropzone-one">
-                                    <div class="m-dropzone__msg dz-message needsclick">
-                                        <h3 class="m-dropzone__msg-title">Drop files here or click to upload.</h3>
-                                        <span class="m-dropzone__msg-desc">This is just a demo dropzone. Selected files are <strong>not</strong> actually uploaded.</span>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <div class="m-dropzone rv-media-thumbnail">
+                                    <div class="m-dropzone__msg">
+                                        <img src="{{ setting('favicon', asset('assets/app/media/img/default.jpg')) }}" class="rv-favicon">
+                                        <input type="text" class="form-control m-input" name="favicon" value="{{ setting('favicon', '') }}" placeholder="Favicon URL" readonly>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-4">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#gallery-modal" data-input="favicon">{{ __('Choose image') }}</button>
                             </div>
                         </div>
                     </div>
@@ -186,6 +192,8 @@
 
             <!--end::Form-->
         </div>
+
+        <x-gallery-modal :images="get_media_files()" />
 
         <!--end::Portlet-->
     </div>
