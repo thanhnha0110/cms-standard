@@ -15,6 +15,28 @@
             <x-table-head :permissions="['posts_create']" />
 
             <div class="m-portlet__body">
+                <div class="form-group m-form__group row">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <x-select 
+                            label="{{ trans('general.posts.form.category') }}"
+                            id="category_id" 
+                            name="category_id" 
+                            value="{{ request()->category_id }}"
+                            :options="get_categories()"
+                            onchange="filter(this)"
+                        />
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <x-select 
+                            label="{{ trans('general.posts.form.tag') }}"
+                            id="tag_id" 
+                            name="tag_id" 
+                            value="{{ request()->tag_id }}"
+                            :options="get_tags()"
+                            onchange="filter(this)"
+                        />
+                    </div>
+                </div>
                 <div class="dataTables_wrapper dt-bootstrap4 no-footer">
                     <!--begin: Size and Search -->
                     <x-table-header />

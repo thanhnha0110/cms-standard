@@ -4,6 +4,7 @@ use App\Models\Category;
 use App\Models\Country;
 use App\Models\MediaFile;
 use App\Models\Setting;
+use App\Models\Tag;
 use App\Models\Timezone;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -88,6 +89,15 @@ if (!function_exists('get_categories')) {
     {
         return Cache::rememberForever('categories', function () {
             return Category::pluck('name', 'id')->toArray();
+        });
+    }
+}
+
+if (!function_exists('get_tags')) {
+    function get_tags()
+    {
+        return Cache::rememberForever('tags', function () {
+            return Tag::pluck('name', 'id')->toArray();
         });
     }
 }

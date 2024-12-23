@@ -130,6 +130,7 @@ return [
             'published_at' => 'Published at',
             'category' => 'Category',
             'tags' => 'Tags',
+            'tag' => 'Tag',
         ],
     ],
     'tags' => [

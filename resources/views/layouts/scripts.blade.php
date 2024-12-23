@@ -48,4 +48,14 @@
 @endif
 <!--end::Notices -->
 
+<script>
+    function filter(elm) {
+    let value = elm.value;
+    let key = elm.id;
+    const url = new URL(window.location.href);
+    url.searchParams.set(key, value);
+    window.location.href = url;
+}
+</script>
+
 @yield('scripts')
