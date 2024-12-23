@@ -26,10 +26,14 @@
     <!--end::Page Vendors Styles -->
     <link rel="shortcut icon" href="{{ setting('favicon', asset('assets/demo/default/media/img/logo/favicon.ico')) }}" />
 
+    <!--begin::Tags Styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@yaireo/tagify/dist/tagify.css">    
+    <!--end::Tags Styles -->
+
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <script src="{{ asset('js/script.js') }}" type="text/javascript"></script>
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('js/script.js?v1.0.0') }}" type="text/javascript"></script>
+    <link href="{{ asset('css/style.css?v1.0.0') }}" rel="stylesheet" type="text/css" />
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 

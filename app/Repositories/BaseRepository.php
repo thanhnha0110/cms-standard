@@ -47,7 +47,7 @@ interface BaseRepository
     /**
      * Create a resource
      * @param  $data
-     * @return $model
+     * @return object
      */
     public function create($data);
 

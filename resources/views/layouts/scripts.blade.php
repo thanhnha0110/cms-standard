@@ -3,6 +3,15 @@
 <script src="{{ asset('assets/demo/default/base/scripts.bundle.js') }}" type="text/javascript"></script>
 <!--end::Global Theme Bundle -->
 
+<!--begin::Tags Styles -->
+<script src="https://cdn.jsdelivr.net/npm/@yaireo/tagify"></script>
+<script>
+    document.querySelectorAll('input[id^="tags"]').forEach(function (input) {
+        new Tagify(input);
+    });
+</script>  
+<!--end::Tags Styles -->
+
 
 
 <!--begin::Notices -->
@@ -38,7 +47,5 @@
     </script>
 @endif
 <!--end::Notices -->
-
-
 
 @yield('scripts')

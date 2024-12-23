@@ -13,8 +13,9 @@ class Input extends Component
     public $value;
     public $error;
     public $required;
+    public $attributes;
 
-    public function __construct($label, $type = 'text', $id = '', $name = '', $value = '', $error = '', $required = '')
+    public function __construct($label = '', $type = 'text', $id = '', $name = '', $value = '', $error = '', $required = '', $attributes = '')
     {
         $this->label = $label;
         $this->type = $type;
@@ -23,6 +24,7 @@ class Input extends Component
         $this->value = $value;
         $this->error = $error;
         $this->required = $required;
+        $this->attributes = $attributes;
     }
 
     public function render()

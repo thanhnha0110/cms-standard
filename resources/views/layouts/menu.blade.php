@@ -17,13 +17,19 @@
             />
 
             <x-menu-item 
-                :permissions="['categories_view', 'tags_view']"
+                :permissions="['posts_view', 'categories_view', 'tags_view']"
                 text="{{ trans('general.menus.management') }}" 
                 iconClass="flaticon-folder-1"
                 :activeClass="
                     Route::is('management.*')
                     ? 'm-menu__item--expanded m-menu__item--open' : ''"
             >
+                <x-sub-menu-item 
+                    :permissions="['posts_view']"
+                    link="{{ route('management.posts.index') }}" 
+                    text="{{ trans('general.posts.title') }}" 
+                    :activeClass="Route::is('management.posts.*') ? 'm-menu__item--active' : ''"
+                />
                 <x-sub-menu-item 
                     :permissions="['categories_view']"
                     link="{{ route('management.categories.index') }}" 

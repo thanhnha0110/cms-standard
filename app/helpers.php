@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Category;
 use App\Models\Country;
 use App\Models\MediaFile;
 use App\Models\Setting;
@@ -79,5 +80,14 @@ if (!function_exists('clear_cache')) {
     function clear_cache($key)
     {
         Cache::forget($key);
+    }
+}
+
+if (!function_exists('get_categories')) {
+    function get_categories()
+    {
+        return Cache::rememberForever('categories', function () {
+            return Category::pluck('name', 'id')->toArray();
+        });
     }
 }

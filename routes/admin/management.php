@@ -18,6 +18,13 @@ Route::group([
 ], function () {
 
     Route::group([
+        'prefix' => 'posts',
+        'as' => 'posts.'
+    ], function () {
+        Route::resource('/', PostController::class)->parameters(['' => 'post']);
+    });
+
+    Route::group([
         'prefix' => 'categories',
         'as' => 'categories.'
     ], function () {

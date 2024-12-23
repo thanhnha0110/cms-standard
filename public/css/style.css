@@ -1,3 +1,12 @@
 .label-required {
     color: red;
 }
+.tbl-featured_image {
+    width: 50px;
+}
+.tbl-title {
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

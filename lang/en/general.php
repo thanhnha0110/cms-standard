@@ -19,7 +19,6 @@ return [
         'platform_administration' => 'Platform Administrator',
         'management' => 'Management',
         'media' => 'Media',
-        'posts' => 'Posts',
     ],
     'users' => [
         'title' => 'Users',
@@ -122,7 +121,15 @@ return [
     'posts' => [
         'title' => 'Posts',
         'form' => [
-            'name' => 'Name',
+            'title' => 'Title',
+            'description' => 'Description',
+            'content' => 'Content',
+            'featured_image' => 'Featured image',
+            'focus_keywords' => 'Focus keywords',
+            'status' => 'Status',
+            'published_at' => 'Published at',
+            'category' => 'Category',
+            'tags' => 'Tags',
         ],
     ],
     'tags' => [
