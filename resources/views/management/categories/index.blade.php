@@ -26,7 +26,6 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Created At</th>
-                                <th>Type</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
@@ -36,9 +35,6 @@
                                 <td>{{ $item->id }}</td>
                                 <td>{{ $item->name }}</td>
                                 <td>{{ $item->created_at }}</td>
-                                <td>
-                                    <x-status-badge status="{{ $item->status }}" />
-                                </td>
                                 <td nowrap>
                                     <x-action-button 
                                         :permissions="['categories_edit']" 
