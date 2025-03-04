@@ -129,4 +129,19 @@ class UserController extends Controller
             return redirect()->route('system.users.edit', $id)->with('error', $e->getMessage());
         }
     }
+
+    /**
+     * Get profile
+     */
+    public function profile(Request $request)
+    {
+        $title = $this->title;
+        $item = $request->user();
+        $roles = Role::pluck('name', 'id')->toArray();
+        return view('system.users.profile', compact(
+            'title',
+            'item',
+            'roles',
+        ));
+    }
 }

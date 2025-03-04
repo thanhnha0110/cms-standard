@@ -29,6 +29,9 @@ Route::group([
         'as' => 'users.'
     ], function () {
         Route::resource('/', UserController::class)->parameters(['' => 'user']);
+
+        Route::get('/{id}/profile', [UserController::class, 'profile'])->name('profile');
+        Route::post('/{id}/profile', [UserController::class, 'updateProfile'])->name('profile.update');
     });
 
     Route::group([
