@@ -98,4 +98,18 @@ class SettingController extends Controller
         $title = trans('general.settings.api.title');
         return view('settings.api', compact('title'));
     }
+
+    /**
+     * Update email setting
+     */
+    public function postApi(Request $request)
+    {
+        try {
+            $params = SettingStore::prepareInsertData($request->all());
+            $this->settingRepository->updateOrCreateMany($params);
+            return redirect()->route('settings.api.get')->with('success', trans('notices.create_success_message'));
+        } catch (Exception $e) {
+            return redirect()->route('settings.api.get')->with('error', $e->getMessage());
+        }
+    }
 }

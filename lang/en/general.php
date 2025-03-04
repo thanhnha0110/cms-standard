@@ -97,6 +97,10 @@ return [
         ],
         'api' => [
             'title' => 'API Settings',
+            'form' => [
+                'url' => 'URL',
+                'access_key' => 'Access key',
+            ],
         ],
     ],
     'categories' => [
