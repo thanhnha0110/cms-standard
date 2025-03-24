@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\ActivityLog;
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\EmailTemplate;
 use App\Models\MediaFile;
 use App\Models\Post;
@@ -11,6 +12,7 @@ use App\Models\Setting;
 use App\Models\Tag;
 use App\Models\User;
 use App\Repositories\Eloquent\EloquentCategoryRepository;
+use App\Repositories\Eloquent\EloquentCommentRepository;
 use App\Repositories\Eloquent\EloquentEmailTemplateRepository;
 use App\Repositories\Eloquent\EloquentLogRepository;
 use App\Repositories\Eloquent\EloquentMediaFileRepository;
@@ -86,6 +88,10 @@ class RepositoryServiceProvider extends ServiceProvider
 
         $this->app->bind('App\Repositories\PostRepository', function () {
             return new EloquentPostRepository(new Post());
+        });
+
+        $this->app->bind('App\Repositories\CommentRepository', function () {
+            return new EloquentCommentRepository(new Comment());
         });
     }
 }

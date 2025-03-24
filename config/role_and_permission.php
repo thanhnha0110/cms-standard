@@ -34,6 +34,15 @@ return [
             'delete' => 'Delete'
         ],
     ],
+    'comments' => [
+        'title' => 'Comments',
+        'permissions' => [
+            'reply' => 'Reply',
+            'edit' => 'Edit',
+            'view' => 'View',
+            'delete' => 'Delete'
+        ],
+    ],
     'media' => [
         'title' => 'Media',
         'permissions' => [

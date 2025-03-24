@@ -42,6 +42,12 @@
                     text="{{ trans('general.tags.title') }}" 
                     :activeClass="Route::is('management.tags.*') ? 'm-menu__item--active' : ''"
                 />
+                <x-sub-menu-item 
+                    :permissions="['comments_view']"
+                    link="{{ route('management.comments.index') }}" 
+                    text="{{ trans('general.comments.title') }}" 
+                    :activeClass="Route::is('management.comments.*') ? 'm-menu__item--active' : ''"
+                />
             </x-menu-item>
 
             <x-menu-single 

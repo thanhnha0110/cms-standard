@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Route;
@@ -36,5 +37,13 @@ Route::group([
         'as' => 'tags.'
     ], function () {
         Route::resource('/', TagController::class)->parameters(['' => 'tag']);
+    });
+
+    Route::group([
+        'prefix' => 'comments',
+        'as' => 'comments.'
+    ], function () {
+        Route::resource('/', CommentController::class)->parameters(['' => 'comment']);
+        Route::post('reply', [CommentController::class, 'reply'])->name('reply');
     });
 });

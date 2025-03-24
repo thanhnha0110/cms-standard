@@ -143,4 +143,12 @@ return [
             'name' => 'Name',
         ],
     ],
+    'comments' => [
+        'title' => 'Comments',
+        'form' => [
+            'name' => 'Name',
+            'content' => 'Content',
+            'reply_content' => 'Reply content',
+        ],
+    ],
 ];
