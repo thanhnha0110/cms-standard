@@ -60,7 +60,7 @@
                             <tr>
                                 <td>{{ $item->id }}</td>
                                 <td>
-                                    <img class="tbl-featured_image" src="{{ $item->featured_image }}">
+                                    <img class="tbl-featured_image" src="{{ get_full_path($item->featured_image) }}">
                                 </td>
                                 <td>
                                     <div class="tbl-title">{{ $item->title }}</div>

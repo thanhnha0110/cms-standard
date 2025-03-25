@@ -204,8 +204,8 @@
                                 m-dropdown-toggle="click" style="width: 100px;">
                                 <a href="#" class="m-nav__link m-dropdown__toggle">
                                     <span class="m-topbar__userpic">
-                                        @if (logged_user()->avatar_id)
-                                        <img src="{{ asset('assets/app/media/img/users/user4.jpg') }}" class="m--img-rounded m--marginless" alt="" />
+                                        @if (logged_user()->avatar)
+                                        <img src="{{ get_full_path(logged_user()->avatar) }}" class="m--img-rounded m--marginless" />
                                         @else
                                         <img src="{{ asset('assets/app/media/img/users/default.png') }}" class="m--img-rounded m--marginless" alt="" />
                                         @endif

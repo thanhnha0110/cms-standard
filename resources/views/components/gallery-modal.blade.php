@@ -12,9 +12,9 @@
                     <div class="col-8">
                         <div class="m-image__list" id="image-list">
                             @foreach ($images as $item)
-                            <a onclick="showImageInfo('{{ $item->name }}', '{{ $item->url }}', '{{ format_datetime($item->created_at) }}', '{{ $item->alt }}')">
+                            <a onclick="showImageInfo('{{ $item->name }}', '{{ get_full_path($item->url) }}', '{{ format_datetime($item->created_at) }}', '{{ $item->alt }}')">
                                 <div class="m-image__item" data-id="{{ $item->id }}">
-                                    <img src="{{ $item->url }}" alt="{{ $item->alt }}" class="m-image__item" data-id="{{ $item->id }}">
+                                    <img src="{{ get_full_path($item->url) }}" alt="{{ $item->alt }}" class="m-image__item" data-id="{{ $item->id }}">
                                 </div>
                             </a>
                             @endforeach
@@ -162,9 +162,9 @@
                 // Append new images to the list
                 response.data.items.forEach(image => {
                     $('#image-list').append(`
-                        <a onclick="showImageInfo('${image.name}', '${image.url}', '${image.created_at}', '${image.alt}')">
+                        <a onclick="showImageInfo('${image.name}', '{{ get_full_path('${image.url}') }}', '${image.created_at}', '${image.alt}')">
                             <div class="m-image__item" class="m-image__item" data-id="${image.id}">
-                                <img src="${image.url}" alt="${image.alt}" class="m-image__item" data-id="${image.id}">
+                                <img src="{{ get_full_path('${image.url}') }}" alt="${image.alt}" class="m-image__item" data-id="${image.id}">
                             </div>
                         </a>
                     `);

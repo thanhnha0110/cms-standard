@@ -77,7 +77,8 @@ class FileHelper
             'alt' => $this->getAlt($file),
             'mine_type' => $this->getMineType($file),
             'size' => $this->getSize($file),
-            'url' => $this->getUrl($pathFile),
+            // 'url' => $this->getUrl($pathFile),
+            'url' => $pathFile,
         ];
     }
 

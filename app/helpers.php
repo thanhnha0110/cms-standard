@@ -1,5 +1,6 @@
 <?php
 
+use App\Helpers\Facades\FileHelper;
 use App\Models\Category;
 use App\Models\Country;
 use App\Models\MediaFile;
@@ -99,5 +100,12 @@ if (!function_exists('get_tags')) {
         return Cache::rememberForever('tags', function () {
             return Tag::pluck('name', 'id')->toArray();
         });
+    }
+}
+
+if (!function_exists('get_full_path')) {
+    function get_full_path($path)
+    {
+        return FileHelper::getUrl($path);
     }
 }

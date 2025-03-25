@@ -120,7 +120,7 @@
                                 <div class="m-dropzone rv-media-thumbnail">
                                     <div class="m-dropzone__msg">
                                         @if ($item->featured_image)
-                                            <img src="{{ $item->featured_image }}" class="rv-featured_image">
+                                            <img src="{{ get_full_path($item->featured_image) }}" class="rv-featured_image">
                                         @else
                                             <img src="{{ asset('assets/app/media/img/default.jpg') }}" class="rv-featured_image">
                                         @endif

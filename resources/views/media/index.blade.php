@@ -43,7 +43,7 @@
                             @foreach ($items as $item)
                             <a onclick="showImageInfo('{{ $item->name }}', '{{ $item->url }}', '{{ format_datetime($item->created_at) }}', '{{ $item->alt }}')">
                                 <div class="m-image__item" data-id="{{ $item->id }}">
-                                    <img src="{{ $item->url }}" alt="{{ $item->alt }}" class="m-image__item" data-id="{{ $item->id }}">
+                                    <img src="{{ get_full_path($item->url) }}" alt="{{ $item->alt }}" class="m-image__item" data-id="{{ $item->id }}">
                                 </div>
                             </a>
                             @endforeach

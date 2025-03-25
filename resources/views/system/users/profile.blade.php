@@ -13,8 +13,30 @@
 
     <div class="m-content">
         <div class="row ">
-            <div class="col-lg-6">
+            <div class="col-4">
+                <div class="m-portlet m-portlet--full-height  ">
+                    <div class="m-portlet__body">
+                        <div class="m-card-profile">
+                            <div class="m-card-profile__pic">
+                                <div class="m-dropzone rv-media-thumbnail">
+                                    <div class="m-dropzone__msg">
+                                        @if ($item->avatar)
+                                        <img src="{{ get_full_path($item->avatar) }}" class="rv-avatar" />
+                                        @else
+                                        <img src="{{ asset('assets/app/media/img/users/default.png') }}" class="rv-avatar" />
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="m-card-profile__details mt-2">
+                                <button type="button" class="btn btn-default" data-toggle="modal" data-target="#gallery-modal" data-input="avatar">{{ __('Choose image') }}</button>
+                            </div>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-8">
                 <!--begin::Portlet-->
                 <div class="m-portlet">
                     <div class="m-portlet__head">
@@ -79,17 +101,26 @@
                             error=""
                             disabled
                         />
+                        <x-input
+                            type="hidden" 
+                            id="avatar" 
+                            name="avatar"
+                            value="{{ old('avatar') }}" 
+                            error="{{ $errors->first('avatar') }}"
+                            placeholder="Featured image URL"
+                            readonly
+                        />
                     </x-form>
-
                     <!--end::Form-->
                 </div>
-
                 <!--end::Portlet-->
 
 
             </div>
         </div>
     </div>
+
+    <x-gallery-modal :images="get_media_files()" />
 
 @endsection
 

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Facade;
  * @method static array uploadSingle(\Illuminate\Http\UploadedFile $file)
  * @method static bool|null delete(string $path)
  * @method static string formatBytes(int $bytes, int|null $precision)
+ * @method static string getUrl(string $path)
  *
  * @see App\Helpers\SettingHelper
  */
